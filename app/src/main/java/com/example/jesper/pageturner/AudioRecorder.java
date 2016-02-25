@@ -1,6 +1,9 @@
 package com.example.jesper.pageturner;
 
+import android.media.AudioFormat;
+import android.media.AudioRecord;
 import android.media.MediaRecorder;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import java.io.IOException;
@@ -8,28 +11,28 @@ import java.io.IOException;
 
 public class AudioRecorder {
     private int samplerate;
-    private MediaRecorder mediaRecorder = new MediaRecorder();
+    private AudioRecord audioRecord = null;
     AudioRecorder(int sampleRate){
         setSampleRate(sampleRate);
+        audioRecord = new AudioRecord(
+                MediaRecorder.AudioSource.DEFAULT,
+                getSamplerate(),
+                AudioFormat.CHANNEL_IN_MONO,
+                AudioFormat.ENCODING_PCM_16BIT,
+                AudioRecord.getMinBufferSize(
+                        getSamplerate(),
+                        AudioFormat.CHANNEL_IN_MONO,
+                        AudioFormat.ENCODING_PCM_16BIT
+                )
+        );
     }
 
     public void startRecording(){
-        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
-        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
-        mediaRecorder.setOutputFile("mfile");
-        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-        mediaRecorder.start();
-        try{
-            mediaRecorder.prepare();
-        } catch (IOException e){
-            Log.e("media recorder", "prepare() failed!");
-        }
-        mediaRecorder.start();
+        audioRecord.startRecording();
     }
 
     public void stopRecording(){
-        mediaRecorder.stop();
-        mediaRecorder.release();
+        audioRecord.stop();
     }
 
     private Sample convertToDigital(){
@@ -37,7 +40,7 @@ public class AudioRecorder {
         return new Sample();
     }
 
-    public int getSamplerate() {
+    private int getSamplerate() {
         return samplerate;
     }
 
