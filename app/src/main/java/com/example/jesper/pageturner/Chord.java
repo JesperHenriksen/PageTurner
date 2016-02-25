@@ -1,7 +1,27 @@
 package com.example.jesper.pageturner;
 
-/**
- * Created by Jesper on 25-02-2016.
- */
+
 public class Chord {
+    public double chordNumber;
+    public String chordName;
+
+    Chord() { //Chord constructor
+
+    }
+
+    public double getChordNumber() {
+        return chordNumber;
+    }
+
+    public void setChordNumber(double chordNumber) {
+        this.chordNumber = chordNumber;
+    }
+
+    public String getChordName() {
+        return chordName;
+    }
+
+    public void setChordName(String chordName) {
+        this.chordName = chordName;
+    }
 }
