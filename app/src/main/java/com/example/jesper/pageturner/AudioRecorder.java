@@ -12,52 +12,63 @@ import java.io.IOException;
 public class AudioRecorder {
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
-    private static final int BUFFER_ELEMENTS_TO_RECORD = 1024;
-    private static final int BYTES_PER_ELEMENT = 2;
-    private int samplerate = 0;
+    private static final int RECORDER_SAMPLE_RATE = 44100;
+
     private AudioRecord audioRecord = null;
-    private int bufferSize = 0;
-    private int buffercount= 0;
+    private int minBufferSize = 0;
     private Thread recordingThread = null;
+    private short[] buffer = null;
 
-
-    AudioRecorder(int sampleRate){
-        setSampleRate(sampleRate);
-        bufferSize = AudioRecord.getMinBufferSize(
-                this.getSampleRate(),
+    AudioRecorder(){
+        minBufferSize = AudioRecord.getMinBufferSize(
+                RECORDER_SAMPLE_RATE,
                 RECORDER_CHANNELS,
                 RECORDER_AUDIO_ENCODING
         );
-
-
-
-    }
-
-    public void startRecording(){
         audioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC,
-                this.getSampleRate(),
+                RECORDER_SAMPLE_RATE,
                 RECORDER_CHANNELS,
                 RECORDER_AUDIO_ENCODING,
-                BUFFER_ELEMENTS_TO_RECORD * BYTES_PER_ELEMENT
+                minBufferSize
         );
-        //audioRecord.startRecording();
+        buffer = new short[minBufferSize];
+    }
+    public int getMinBufferSize() {
+        return minBufferSize;
+    }
+
+
+    public void startRecording(){
+        audioRecord.startRecording();
+        audioRecord.read(buffer, 0 , minBufferSize);
+    }
+
+    public int getRecorderState(){
+        return audioRecord.getRecordingState();
     }
 
     public void stopRecording(){
         audioRecord.stop();
+        //audioRecord.release();
     }
 
-    /*private Sample convertToDigital(){
+    public int getSampleRate() {
+        return RECORDER_SAMPLE_RATE;
+    }
+
+    /*private void setSampleRate(int samplerate){
+        this.samplerate = this.samplerate == 0 ? samplerate : this.samplerate;
+    }*/
+   /*private Sample convertToDigital(){
         Sample sample = new Sample();
         return new Sample();
     }*/
+        /*AudioRecorder(int sampleRate){
+        setSampleRate(sampleRate);
 
-    private int getSampleRate() {
-        return samplerate;
-    }
-
-    private void setSampleRate(int samplerate){
-        this.samplerate = this.samplerate == 0 ? samplerate : this.samplerate;
-    }
+    }*/
+    /*private void setMinBufferSize(int minBufferSize) {
+        this.minBufferSize = minBufferSize;
+    }*/
 
 }
