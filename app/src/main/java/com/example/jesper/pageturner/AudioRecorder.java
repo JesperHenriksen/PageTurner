@@ -10,42 +10,54 @@ import java.io.IOException;
 
 
 public class AudioRecorder {
-    private int samplerate;
+    private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
+    private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
+    private static final int BUFFER_ELEMENTS_TO_RECORD = 1024;
+    private static final int BYTES_PER_ELEMENT = 2;
+    private int samplerate = 0;
     private AudioRecord audioRecord = null;
+    private int bufferSize = 0;
+    private int buffercount= 0;
+    private Thread recordingThread = null;
+
+
     AudioRecorder(int sampleRate){
         setSampleRate(sampleRate);
-        audioRecord = new AudioRecord(
-                MediaRecorder.AudioSource.DEFAULT,
-                getSamplerate(),
-                AudioFormat.CHANNEL_IN_MONO,
-                AudioFormat.ENCODING_PCM_16BIT,
-                AudioRecord.getMinBufferSize(
-                        getSamplerate(),
-                        AudioFormat.CHANNEL_IN_MONO,
-                        AudioFormat.ENCODING_PCM_16BIT
-                )
+        bufferSize = AudioRecord.getMinBufferSize(
+                this.getSampleRate(),
+                RECORDER_CHANNELS,
+                RECORDER_AUDIO_ENCODING
         );
+
+
+
     }
 
     public void startRecording(){
-        audioRecord.startRecording();
+        audioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC,
+                this.getSampleRate(),
+                RECORDER_CHANNELS,
+                RECORDER_AUDIO_ENCODING,
+                BUFFER_ELEMENTS_TO_RECORD * BYTES_PER_ELEMENT
+        );
+        //audioRecord.startRecording();
     }
 
     public void stopRecording(){
         audioRecord.stop();
     }
 
-    private Sample convertToDigital(){
+    /*private Sample convertToDigital(){
         Sample sample = new Sample();
         return new Sample();
-    }
+    }*/
 
-    private int getSamplerate() {
+    private int getSampleRate() {
         return samplerate;
     }
 
     private void setSampleRate(int samplerate){
-        this.samplerate = samplerate;
+        this.samplerate = this.samplerate == 0 ? samplerate : this.samplerate;
     }
 
 }
