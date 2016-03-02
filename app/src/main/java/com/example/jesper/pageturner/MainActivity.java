@@ -13,8 +13,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.ListAdapter;
+import android.widget.ArrayAdapter;
 
 public class MainActivity extends AppCompatActivity {
+    ListView list;
+    int [] note_image_resource = {R.drawable.notes1, R.drawable.notes1, R.drawable.notes1};
+    String[] song_titles;
+    String[] artist_names;
+    SongAdapter adapter;
+
     AudioRecorder audioRecorderClass = null;
     Button startButton = null;
     Button stopButton = null;
@@ -23,14 +34,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startButton = (Button) findViewById(R.id.startButton);
+        /*startButton = (Button) findViewById(R.id.startButton);
         stopButton = (Button) findViewById(R.id.stopButton);
         newButton = (Button) findViewById(R.id.recordingButton);
 
-        audioRecorderClass = new AudioRecorder();
         startButton.setOnClickListener(new btnClick());
         stopButton.setOnClickListener(new btnClick());
-        newButton.setOnClickListener(new btnClick());
+        newButton.setOnClickListener(new btnClick());*/
+        audioRecorderClass = new AudioRecorder();
+
+        list = (ListView)findViewById(R.id.songList);
+        artist_names = getResources().getStringArray(R.array.Artists);
+        song_titles = getResources().getStringArray(R.array.song_titles);
+        int i = 0;
+        adapter = new SongAdapter(getApplicationContext(), R.layout.row_layout);
+        list.setAdapter(adapter);
+
+        for (String titles: song_titles) {
+            Song song = new Song(note_image_resource[i], titles, artist_names[i]);
+            adapter.add(song);
+            i++;
+        }
+
 
     }
 
@@ -38,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
     class btnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.startButton:
+            /*switch (v.getId()) {
+               case R.id.startButton:
                     audioRecorderClass.startRecording();
                     break;
                 case R.id.stopButton:
@@ -49,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 default:
                     break;
-            }
-            updateText();
+            }*/
+            //updateText();
 
 
         }
