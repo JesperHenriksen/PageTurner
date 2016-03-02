@@ -19,7 +19,6 @@ public class AudioRecorder {
     private Thread recordingThread = null;
     private short buffer[] = null;
     public boolean isRecording = false;
-    MainActivity mainActivity = new MainActivity();
 
     AudioRecorder(){
         minBufferSize = AudioRecord.getMinBufferSize(
