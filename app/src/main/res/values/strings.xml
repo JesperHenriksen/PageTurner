@@ -1,5 +1,17 @@
 <resources>
-    <string name="app_name">PageTurner</string>
+    <string name="app_name">Follow the Music</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_recorder_page">RecorderPage</string>
+
+    <string-array name="song_titles">
+        <item>Song 1</item>
+        <item>Song 2</item>
+        <item>Song 3</item>
+    </string-array>
+
+    <string-array name="Artists">
+        <item>Artist 1</item>
+        <item>Artist 2</item>
+        <item>Artist 3</item>
+    </string-array>
 </resources>
