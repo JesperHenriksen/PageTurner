@@ -18,20 +18,20 @@ public class MainActivity extends AppCompatActivity {
     private AudioRecordToFile recorder = null;
     private Button startButton = null;
     private Button stopButton = null;
-    private Button newButton = null;
+    private Button playButton = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startButton = (Button) findViewById(R.id.startButton);
-        stopButton = (Button) findViewById(R.id.stopButton);
-        newButton = (Button) findViewById(R.id.recordingButton);
-
+        startButton = (Button) findViewById(R.id.button);
+        stopButton = (Button) findViewById(R.id.button2);
+        playButton = (Button) findViewById(R.id.button3);
         recorder = new AudioRecordToFile();
         startButton.setOnClickListener(new btnClick());
         stopButton.setOnClickListener(new btnClick());
-        newButton.setOnClickListener(new btnClick());
-
+        playButton.setOnClickListener(new btnClick());
+        stopButton.setEnabled(false);
+        playButton.setEnabled(false);
     }
 
 
@@ -40,17 +40,22 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.startButton:
+                case R.id.button:
                     try {
                         recorder.startRecording();
+                        startButton.setEnabled(false);
+                        stopButton.setEnabled(true);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     break;
-                case R.id.stopButton:
+                case R.id.button2:
                     recorder.stopRecording();
+                    startButton.setEnabled(true);
+                    stopButton.setEnabled(false);
+                    playButton.setEnabled(true);
                     break;
-                case R.id.recordingButton:
+                case R.id.button3:
                     try {
                         recorder.playRecording();
                     } catch (Exception e) {
@@ -60,20 +65,10 @@ public class MainActivity extends AppCompatActivity {
                 default:
                     break;
             }
-            //updateText();
+
 
 
         }
     }
 
-    private void updateText(){
-        TextView console = (TextView) findViewById(R.id.console);
-        console.setText(/*"format " + AudioFormat.CHANNEL_IN_MONO + "\n" +
-                        " encoding " + AudioFormat.ENCODING_PCM_8BIT + "\n" +
-                        " Sample rate: " + audioRecorderClass.getSampleRate() + "\n" +
-                        " Min buffer size " + audioRecorderClass.getMinBufferSize() + "\n" +
-                        " Recorder state " + audioRecorderClass.getRecorderState() + "\n" +*/
-                        " recording " + new Sample().popQueue()
-        );
-    }
 }

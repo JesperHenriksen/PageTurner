@@ -11,33 +11,49 @@ import java.io.IOException;
 public class AudioRecordToFile {
     private MediaRecorder recorder;
     private MediaPlayer player;
-    private String OUTPUT_FILE_DIRECTORY = Environment.getExternalStorageDirectory() + "audioRecorder.mpeg4";
+    private static final String OUTPUT_FILE_PATH =
+            Environment.getExternalStorageDirectory().getAbsolutePath() + "/recording.3gp";
 
-    public void startRecording() throws IllegalStateException, IOException{
+    public void startRecording() throws Exception{
 
-        File outputFile = new File(OUTPUT_FILE_DIRECTORY);
-        if (outputFile.exists())
-            outputFile.delete();
+        File save = new File(OUTPUT_FILE_PATH, "recording.3pg");
 
         recorder = new MediaRecorder();
-        recorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
+        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-        recorder.setOutputFile(OUTPUT_FILE_DIRECTORY);
+        recorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+        recorder.setOutputFile(OUTPUT_FILE_PATH);
+
         recorder.prepare();
         recorder.start();
     }
 
-    public void stopRecording(){
+    public void stopRecording() {
         recorder.stop();
         recorder.release();
-        recorder = null;
+        recorder  = null;
+
     }
 
-    public void playRecording()throws Exception{
+    public void playRecording() {
         player = new MediaPlayer();
-        player.setDataSource(OUTPUT_FILE_DIRECTORY);
-        player.prepare();
+
+        try {
+            player.setDataSource(OUTPUT_FILE_PATH);
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            player.prepare();
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
         player.start();
     }
 }
