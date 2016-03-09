@@ -15,10 +15,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    AudioRecorder audioRecorderClass = null;
-    Button startButton = null;
-    Button stopButton = null;
-    Button newButton = null;
+    private AudioRecordToFile recorder = null;
+    private Button startButton = null;
+    private Button stopButton = null;
+    private Button newButton = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         stopButton = (Button) findViewById(R.id.stopButton);
         newButton = (Button) findViewById(R.id.recordingButton);
 
-        audioRecorderClass = new AudioRecorder();
+        recorder = new AudioRecordToFile();
         startButton.setOnClickListener(new btnClick());
         stopButton.setOnClickListener(new btnClick());
         newButton.setOnClickListener(new btnClick());
@@ -36,27 +36,37 @@ public class MainActivity extends AppCompatActivity {
 
 
     class btnClick implements View.OnClickListener {
+
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.startButton:
-                    audioRecorderClass.startRecording();
+                    try {
+                        recorder.startRecording();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case R.id.stopButton:
-                    audioRecorderClass.stopRecording();
+                    recorder.stopRecording();
                     break;
                 case R.id.recordingButton:
+                    try {
+                        recorder.playRecording();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 default:
                     break;
             }
-            updateText();
+            //updateText();
 
 
         }
     }
 
-    public void updateText(){
+    private void updateText(){
         TextView console = (TextView) findViewById(R.id.console);
         console.setText(/*"format " + AudioFormat.CHANNEL_IN_MONO + "\n" +
                         " encoding " + AudioFormat.ENCODING_PCM_8BIT + "\n" +

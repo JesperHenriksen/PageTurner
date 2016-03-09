@@ -15,9 +15,8 @@ public class Sample {
     private static ArrayList<Short> shortQueue = new ArrayList<Short>();
     private static int numberOfSecondsSaved = 10;
     private static final int MAX_QUEUE_SIZE = 44100 * numberOfSecondsSaved;
-    Sample(){
 
-    }
+    Sample(){}
 
     Sample(short b) { //Sample Constructor. Creates one sample with one byte
         addShortToQueue(b);

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class EPCP {
 
-    private Sample sampleCollection = new Sample();
     private double meanSampleValue = 0;
     private static final int MAX_SAMPLES_PER_TONE = 3800;
 
@@ -20,8 +19,12 @@ public class EPCP {
     private void updateMeanValue(){
         setMeanSampleValue(0);
         for(int i = 0; i <MAX_SAMPLES_PER_TONE; i++){
-            setMeanSampleValue(getMeanSampleValue() + sampleCollection.popQueue());
+            setMeanSampleValue(getMeanSampleValue() + getSample());
         }
         setMeanSampleValue(getMeanSampleValue()/MAX_SAMPLES_PER_TONE);
+    }
+
+    private short getSample(){
+        return new Sample().popQueue();
     }
 }
