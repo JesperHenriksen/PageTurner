@@ -2,7 +2,6 @@ package com.example.jesper.pageturner;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 
 public class ExistingChords {
     private static ArrayList<Chord> existingChords = new ArrayList<>();
