@@ -6,31 +6,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
     tools:context="com.example.jesper.pageturner.MainActivity"
-    android:background="#fffbf1">
+    android:background="#f5f2f9">
 
 
-
-    <TextView
-        android:id="@+id/Headline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Follow the Music"
-        android:background="#d0d7d8"
-        android:fontFamily="Roboto"
-        android:textColor="#303a3b"
-        android:textSize="38dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:layout_marginRight="0dp" />
-
-
-    <ListView
-        android:id="@+id/songList"
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_below="@id/Headline">
-    </ListView>
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/lightbg"
+        />
 
     <Button
         android:layout_width="wrap_content"
@@ -38,7 +22,8 @@
         android:text="New Button"
         android:id="@+id/button"
         android:layout_below="@+id/Headline"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -57,5 +42,25 @@
         android:layout_below="@+id/button2"
         android:layout_alignLeft="@+id/button2"
         android:layout_alignStart="@+id/button2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Choose a Song"
+        android:id="@+id/choosesongbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="114dp"
+        android:textColor="#f5f2f9"
+        android:textSize="30dp"
+        android:fontFamily="roboto"
+        android:textAllCaps="false"
+        android:background="#9575cd"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:onClick="startChooseSongActivity"/>
 
 </RelativeLayout>

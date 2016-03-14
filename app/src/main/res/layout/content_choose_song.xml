@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.jesper.pageturner.MainActivity"
+    android:background="#673ab7">
+
+
+
+
+
+    <!-- Background colour menu-->
+    <TableRow
+        android:id="@+id/backgroundMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#f5f2f9"
+        android:layout_alignBottom="@+id/Headline">
+    </TableRow>
+
+    <!--Headline-->
+    <TextView
+        android:id="@+id/Headline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Choose a Song"
+        android:fontFamily="Roboto"
+        android:textColor="#673ab7"
+        android:textSize="38dp"
+        android:textStyle="normal"
+
+        android:layout_marginLeft="90dp"
+        android:paddingBottom="10dp" />
+
+    <!--Note image (Logo)-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/noteImage"
+        android:src="@drawable/note"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <!--List of songs to choose between-->
+    <ListView
+        android:id="@+id/songList"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/backgroundMenu"
+        android:layout_margin="20dp"
+        android:background="#f5f2f9">
+    </ListView>
+
+
+</RelativeLayout>

@@ -2,6 +2,7 @@ package com.example.jesper.pageturner;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioFormat;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private Button startButton = null;
     private Button stopButton = null;
     private Button playButton = null;
+
+    //int[] note_image_resource = {R.drawable.notes1, R.drawable.notes1, R.drawable.notes1}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         playButton.setOnClickListener(new btnClick());
         stopButton.setEnabled(false);
         playButton.setEnabled(false);
+
     }
 
 
@@ -67,8 +72,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-
         }
+    }
+
+    public void startChooseSongActivity(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, ChooseSong.class);
+        startActivity(intent);
     }
 
 }
