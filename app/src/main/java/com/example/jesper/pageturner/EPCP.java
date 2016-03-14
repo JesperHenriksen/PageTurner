@@ -1,8 +1,6 @@
 package com.example.jesper.pageturner;
 
 
-import java.util.ArrayList;
-
 public class EPCP {
 
     private double meanSampleValue = 0;
