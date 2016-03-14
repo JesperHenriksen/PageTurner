@@ -1,38 +1,48 @@
 package com.example.jesper.pageturner;
 
+import java.util.ArrayList;
+
 public class Song {
 
-    private int note_image_resource;
-    private String song_title;
-    private String artist_name;
+    private int noteImageResource;
+    private String songTitle;
+    private String artistName;
+    private static ArrayList<Chord> songChords = new ArrayList<>();
 
-    public int getNote_image_resource() {
-        return note_image_resource;
+    public Song(int note_image_resource, String songTitle, String artistName) {
+        this.setNoteImageResource(note_image_resource);
+        this.setSongTitle(songTitle);
+        this.setArtistName(artistName);
+        songChords.add(this.getChordsToSong(this.getSongTitle()));
     }
 
-    public void setNote_image_resource(int note_image_resource) {
-        this.note_image_resource = note_image_resource;
+    private Chord getChordsToSong(String songTitle){
+        Chord chord = new Chord("chord",0);
+        return chord;
+    }
+    public int getNoteImageResource() {
+        return noteImageResource;
     }
 
-    public String getSong_title() {
-        return song_title;
+    private void setNoteImageResource(int noteImageResource) {
+        this.noteImageResource = noteImageResource;
     }
 
-    public void setSong_title(String song_title) {
-        this.song_title = song_title;
+    public String getSongTitle() {
+        return songTitle;
     }
 
-    public String getArtist_name() {
-        return artist_name;
+    private void setSongTitle(String songTitle) {
+        this.songTitle = songTitle;
     }
 
-    public void setArtist_name(String artist_name) {
-        this.artist_name = artist_name;
+    public String getArtistName() {
+        return artistName;
     }
 
-    public Song(int note_image_resource, String song_title, String artist_name) {
-        this.setNote_image_resource(note_image_resource);
-        this.setSong_title(song_title);
-        this.setArtist_name(artist_name);
+    private void setArtistName(String artistName) {
+        this.artistName = artistName;
     }
+
+
 }

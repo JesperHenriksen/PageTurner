@@ -11,9 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by natasjahelledie on 02/03/16.
- */
+
 public class SongAdapter extends ArrayAdapter{
     List list = new ArrayList();
 
@@ -60,9 +58,9 @@ public class SongAdapter extends ArrayAdapter{
         }
         Song song;
         song = (Song)this.getItem(position);
-        handler.note.setImageResource(song.getNote_image_resource());
-        handler.title.setText(song.getSong_title());
-        handler.artist.setText(song.getArtist_name());
+        handler.note.setImageResource(song.getNoteImageResource());
+        handler.title.setText(song.getSongTitle());
+        handler.artist.setText(song.getArtistName());
 
         return row;
     }

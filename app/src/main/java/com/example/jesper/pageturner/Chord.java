@@ -2,18 +2,19 @@ package com.example.jesper.pageturner;
 
 
 public class Chord {
-    public double chordNumber;
-    public String chordName;
+    private double chordNumber;
+    private String chordName;
 
-    Chord() { //Chord constructor
-
+    public Chord(String chordName, double chordNumber) { //Chord constructor
+        this.setChordNumber(chordNumber);
+        this.setChordName(chordName);
     }
 
     public double getChordNumber() {
         return chordNumber;
     }
 
-    public void setChordNumber(double chordNumber) {
+    private void setChordNumber(double chordNumber) {
         this.chordNumber = chordNumber;
     }
 
