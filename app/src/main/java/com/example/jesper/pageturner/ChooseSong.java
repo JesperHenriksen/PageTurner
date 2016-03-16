@@ -19,8 +19,7 @@ public class ChooseSong extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_song);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
         listSongNames = (ListView) findViewById(R.id.songList);
         artist_names = getResources().getStringArray(R.array.Artists);

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:background="#fffbf1"
-    android:padding="15dp">
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:background="@color/lightPurple"
+    >
 
     <!--Note image-->
     <ImageView
@@ -22,7 +27,6 @@
         android:text="This is song name"
         android:textColor="#303a3b"
         android:textSize="40dp"
-
         android:padding="10dp" />
 
     <!--Artist name-->

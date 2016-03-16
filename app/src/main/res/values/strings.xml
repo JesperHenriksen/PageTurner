@@ -4,7 +4,7 @@
     <string name="title_activity_recorder_page">RecorderPage</string>
 
     <string-array name="song_titles">
-        <item>Song 1</item>
+        <item>Til vor lille gerning ud</item>
         <item>Song 2</item>
         <item>Song 3</item>
         <item>Song 4</item>
@@ -20,5 +20,12 @@
         <item>Artist 5</item>
         <item>Artist 6</item>
     </string-array>
+
+    <string-array name="NoteMenuOptions">
+        <item>Reset Song</item>
+        <item>Show Sheet Music</item>
+        <item>Show Progress Bar</item>
+    </string-array>
     <string name="title_activity_choose_song">ChooseSong</string>
+    <string name="title_activity_note_page">NotePage</string>
 </resources>

@@ -6,15 +6,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
     tools:context="com.example.jesper.pageturner.MainActivity"
-    android:background="#f5f2f9">
+    android:background="@color/lightPurple">
 
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/imageView"
         android:src="@drawable/lightbg"
-        />
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:id="@+id/noteImageFrontpage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/notefrontpage"
+        android:scaleType="center"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -46,21 +56,20 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="Choose a Song"
         android:id="@+id/choosesongbutton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="114dp"
+        android:layout_marginBottom="62dp"
         android:textColor="#f5f2f9"
         android:textSize="30dp"
         android:fontFamily="roboto"
         android:textAllCaps="false"
-        android:background="#9575cd"
+        android:background="@drawable/buttonround"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:paddingRight="15dp"
         android:paddingLeft="15dp"
-        android:onClick="startChooseSongActivity"/>
+        android:onClick="startChooseSongActivity"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

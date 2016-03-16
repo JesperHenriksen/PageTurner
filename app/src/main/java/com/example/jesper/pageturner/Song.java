@@ -14,6 +14,7 @@ public class Song {
         this.setSongTitle(songTitle);
         this.setArtistName(artistName);
         songChords.add(this.getChordsToSong(this.getSongTitle()));
+        SongCollection songCollection = new SongCollection(this);
     }
 
     private Chord getChordsToSong(String songTitle){

@@ -37,6 +37,14 @@
         <activity
             android:name=".ChooseSong"
             android:label="@string/title_activity_choose_song"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jesper.pageturner.MainActivity" />
+        </activity>
+        <activity
+            android:name=".NotePage"
+            android:label="@string/title_activity_note_page"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 

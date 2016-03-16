@@ -15,9 +15,12 @@ import java.util.List;
 public class SongAdapter extends ArrayAdapter{
     List list = new ArrayList();
 
+
     public SongAdapter(Context context, int resource) {
         super(context, resource);
     }
+
+
 
     public void add(Object object) {
         super.add(object);
