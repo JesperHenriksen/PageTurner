@@ -2,11 +2,17 @@ package com.example.jesper.pageturner;
 
 //Puts a byte in an Array list.
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Queue;
 
 public class Sample {
 
-    private static ArrayList<Short> sampleQueue = new ArrayList<>();
+    private static ArrayList<Short> shortQueue = new ArrayList<Short>();
     private static int numberOfSecondsSaved = 10;
     private static final int MAX_QUEUE_SIZE = 44100 * numberOfSecondsSaved;
 
@@ -14,29 +20,21 @@ public class Sample {
 
     Sample(short b) { //Sample Constructor. Creates one sample with one byte
         addShortToQueue(b);
-        if(sampleQueue.size() > MAX_QUEUE_SIZE)
-            this.popQueue();
+        if(shortQueue.size() > MAX_QUEUE_SIZE)
+            shortQueue.remove(0);
     }
-    private short getFirstElement(){
-        return this.getQueue().get(0);
-    }
-    private ArrayList<Short> getQueue(){
-        return sampleQueue;
-    }
-    private void removeFirstElement(){
-        this.getQueue().remove(0);
-    }
+
     private void addShortToQueue(short b){ //Add more bytes to the List
-        sampleQueue.add(b);
+        shortQueue.add(b);
     }
     public short popQueue(){
-        if(sampleQueue.isEmpty())
+        if(shortQueue.size() <= 0)
             return 0;
-        short result = getFirstElement();
-        this.removeFirstElement();
+        short result = shortQueue.get(0);
+        shortQueue.remove(0);
         return result;
     }
     public void resetQueue(){
-        sampleQueue.clear();
+        shortQueue.clear();
     }
 }

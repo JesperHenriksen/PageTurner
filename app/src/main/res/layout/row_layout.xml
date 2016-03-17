@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#fffbf1"
     android:padding="15dp">
 
     <!--Note image-->
     <ImageView
+        android:contentDescription="@string/bob"
         android:id="@+id/note_image"
-        android:layout_width="150dp"
-        android:layout_height="190dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
         android:src="@drawable/notes1"
         />
 
     <!--Song title-->
     <TextView
-        android:id="@+id/Song_title"
+        android:id="@+id/song_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/note_image"
-        android:text="This is song name"
-        android:textColor="#303a3b"
+        android:layout_toEndOf="@id/note_image"
+        android:layout_toRightOf="@id/note_image"
         android:textSize="40dp"
-
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="#303a3b" />
 
     <!--Artist name-->
     <TextView
-        android:id="@+id/Artist_name"
+        android:id="@+id/artist_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Song_title"
-        android:layout_toRightOf="@+id/note_image"
-        android:text="This is artist name"
+        android:layout_below="@id/song_title"
         android:textColor="#586a6c"
         android:textSize="30dp"
         android:paddingLeft="10dp"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
 
 

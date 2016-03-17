@@ -2,9 +2,10 @@
     <string name="app_name">Follow the Music</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_recorder_page">RecorderPage</string>
+    <string name="bob">Bob</string>
 
     <string-array name="song_titles">
-        <item>Song 1</item>
+        <item>Lyset for de lærde blot</item>
         <item>Song 2</item>
         <item>Song 3</item>
         <item>Song 4</item>
@@ -12,8 +13,8 @@
         <item>Song 6</item>
     </string-array>
 
-    <string-array name="Artists">
-        <item>Artist 1</item>
+    <string-array name="artists">
+        <item>Unkown</item>
         <item>Artist 2</item>
         <item>Artist 3</item>
         <item>Artist 4</item>
@@ -22,3 +23,4 @@
     </string-array>
     <string name="title_activity_choose_song">ChooseSong</string>
 </resources>
+
