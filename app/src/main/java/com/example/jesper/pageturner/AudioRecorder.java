@@ -4,7 +4,7 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 
-import com.example.jesper.pageturner.fftw.Plan;
+
 
 
 public class AudioRecorder {
@@ -17,7 +17,7 @@ public class AudioRecorder {
     private Thread recordingThread = null;
     private short buffer[] = null;
     public boolean isRecording = false;
-    Plan plan = new Plan(1);
+
 
     AudioRecorder(){
         minBufferSize = AudioRecord.getMinBufferSize(
