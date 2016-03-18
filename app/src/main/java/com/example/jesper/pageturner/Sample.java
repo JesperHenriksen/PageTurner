@@ -13,10 +13,8 @@ import java.util.Queue;
 public class Sample {
 
     private static ArrayList<Short> shortQueue = new ArrayList<Short>();
-    private static int numberOfSecondsSaved = 10;
+    private static int numberOfSecondsSaved = 2;
     private static final int MAX_QUEUE_SIZE = 44100 * numberOfSecondsSaved;
-
-    Sample(){}
 
     Sample(short b) { //Sample Constructor. Creates one sample with one byte
         addShortToQueue(b);
@@ -27,14 +25,14 @@ public class Sample {
     private void addShortToQueue(short b){ //Add more bytes to the List
         shortQueue.add(b);
     }
-    public short popQueue(){
+    public static short popQueue(){
         if(shortQueue.size() <= 0)
             return 0;
         short result = shortQueue.get(0);
         shortQueue.remove(0);
         return result;
     }
-    public void resetQueue(){
+    public static void resetQueue(){
         shortQueue.clear();
     }
 }

@@ -181,7 +181,10 @@ public class Complex {
         }
 
         return y;
+    }
 
+    public double getRe(){
+        return this.re;
     }
 
     // display an array of Complex numbers to standard output

@@ -44,7 +44,7 @@ public class AudioRecorder {
     public void startRecording(){
         isRecording = true;
         audioRecord.startRecording();
-        new Sample().resetQueue();
+        Sample.resetQueue();
         recordingThread = new Thread(new Runnable() {
             public void run() {
                 while(isRecording)
