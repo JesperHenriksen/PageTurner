@@ -7,4 +7,6 @@
     <color name="purple">#9575cd</color>
     <color name="headlineColor">#673ab7</color>
     <color name="purpleButton">#a183d7</color>
+    <color name="bgColor">#512da8</color>
+
 </resources>

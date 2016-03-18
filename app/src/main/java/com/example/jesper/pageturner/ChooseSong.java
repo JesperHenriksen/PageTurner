@@ -1,6 +1,7 @@
 package com.example.jesper.pageturner;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -42,7 +43,10 @@ public class ChooseSong extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                         String aSong = String.valueOf(parent.getItemAtPosition(position));
-                        Toast.makeText(ChooseSong.this, aSong, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(ChooseSong.this, aSong, Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(ChooseSong.this, NotePage.class);
+                        startActivity(intent);
                     }
                 }
         );

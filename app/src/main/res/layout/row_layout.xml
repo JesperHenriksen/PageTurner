@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fffbf1"
+    android:background="@color/lightPurple"
     android:padding="15dp">
 
     <!--Note image-->
@@ -26,20 +26,30 @@
         android:layout_toRightOf="@id/note_image"
         android:textSize="40dp"
         android:padding="10dp"
-        android:textColor="#303a3b" />
+        android:fontFamily="roboto"
+        android:textColor="@color/bgColor"
+        android:textStyle="bold"/>
 
     <!--Artist name-->
     <TextView
         android:id="@+id/artist_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/song_title"
-        android:textColor="#586a6c"
+        android:textColor="@color/purple"
+        android:fontFamily="roboto"
+        android:textStyle="italic"
         android:textSize="30dp"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_below="@+id/song_title"
+        android:layout_toRightOf="@+id/note_image" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/purple"
+        android:layout_below="@+id/note_image"
+        android:layout_marginTop="25dp"></View>
 
 
 
