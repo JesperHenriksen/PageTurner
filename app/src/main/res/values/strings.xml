@@ -28,7 +28,9 @@
         <item>Show Progress Bar</item>
     </string-array>
 
-    <string name="title_activity_choose_song">ChooseSong</string>
-    <string name="title_activity_note_page">NotePage</string>
+    <string name="title_activity_choose_song">Choose Song</string>
+    <string name="title_activity_note_page">Note Page</string>
+    <string name="title_activity_show_sheet_music">Show Sheet Music</string>
+    <string name="title_activity_show_progress_bar">Show Progress Bar</string>
 </resources>
 

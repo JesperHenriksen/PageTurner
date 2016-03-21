@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
     tools:context="com.example.jesper.pageturner.MainActivity"
-    android:background="@color/bgColor">
+    android:background="@color/bgColor"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_note_page"
+    android:layout_below="@+id/my_toolbar">
 
 
 
 
-    <!-- Background colour menu-->
+    <!-- Background colour menu
     <TableRow
         android:id="@+id/backgroundMenu"
         android:layout_width="match_parent"
@@ -21,9 +25,9 @@
         android:layout_alignParentStart="true"
         android:background="#f5f2f9"
         android:layout_alignBottom="@+id/HeadlineSongTitle">
-    </TableRow>
+    </TableRow>-->
 
-    <!--Song title-->
+    <!--Song title
     <TextView
         android:id="@+id/HeadlineSongTitle"
         android:layout_width="wrap_content"
@@ -36,9 +40,9 @@
         android:textSize="38dp"
         android:textStyle="normal"
         android:layout_marginLeft="90dp"
-        android:paddingBottom="10dp" />
+        android:paddingBottom="10dp" />-->
 
-    <!--Artist name-->
+    <!--Artist name
     <TextView
         android:id="@+id/HeadlineArtist"
         android:layout_width="wrap_content"
@@ -51,9 +55,9 @@
         android:layout_toRightOf="@+id/HeadlineSongTitle"
         android:textSize="30dp"
         android:textStyle="italic"
-        android:paddingBottom="10dp" />
+        android:paddingBottom="10dp" />-->
 
-    <!--back button-->
+    <!--back button
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,27 +69,17 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="backChooseSong"/>
+        android:onClick="backChooseSong"/>-->
 
     <View
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/backgroundMenu"
+        android:layout_below="@+id/my_toolbar"
         android:layout_margin="20dp"
         android:background="@color/lightPurple"
         android:id="@+id/view" />
 
-    <!--Drop down menu-->
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/HeadlineArtist"
-        android:id="@+id/dropDownMenu"
-        android:entries="@array/dropdownitems"
-        android:background="@color/lightPurple"
-        android:layout_marginLeft="550dp"
-        android:layout_marginTop="10dp"></Spinner>
 
 </RelativeLayout>

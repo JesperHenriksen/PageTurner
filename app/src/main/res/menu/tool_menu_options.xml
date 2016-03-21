@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--Settings, should always be shown in overflow menu-->
+    <item
+        android:id="@+id/resetSongToolbar"
+        android:title="Reset Song"
+        android:icon="@drawable/resetmenu"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/showsheetmusicToolbar"
+        android:title="Show Sheet Music"
+        android:icon="@drawable/resetmenu"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/showProgressToolbar"
+        android:title="Show Progress Bar"
+        android:icon="@drawable/resetmenu"
+        app:showAsAction="never"/>
+
+</menu>
