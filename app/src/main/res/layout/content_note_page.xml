@@ -79,11 +79,13 @@
 
     <!--Drop down menu-->
     <Spinner
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/HeadlineArtist"
         android:id="@+id/dropDownMenu"
         android:entries="@array/dropdownitems"
-        android:layout_marginRight="50dp"></Spinner>
+        android:background="@color/lightPurple"
+        android:layout_marginLeft="550dp"
+        android:layout_marginTop="10dp"></Spinner>
 
 </RelativeLayout>

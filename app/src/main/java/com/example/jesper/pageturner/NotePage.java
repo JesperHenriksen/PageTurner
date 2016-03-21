@@ -16,8 +16,8 @@ import android.widget.SpinnerAdapter;
 
 public class NotePage extends Activity {
 
-    String[] options = {"Reset Song", "Show  Sheet Music", "Show Progress Bar"};
-    int arr_images[] = {R.drawable.backbutton, R.drawable.backbutton, R.drawable.backbutton};
+    String[] options = {" ", "Reset Song", "Show  Sheet Music", "Show Progress Bar"};
+    int arr_images[] = {R.drawable.dropdownmenu, R.drawable.resetmenu, R.drawable.notemenu, R.drawable.progressmenu};
 
     Spinner spinner;
 
@@ -51,6 +51,7 @@ public class NotePage extends Activity {
             label.setText(options[position]);
 
             ImageView icon=(ImageView)row.findViewById(R.id.spinnerIcons);
+            icon.setImageResource(arr_images[position]);
             return row;
         }
     }
