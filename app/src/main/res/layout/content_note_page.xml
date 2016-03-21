@@ -84,7 +84,6 @@
         android:layout_toRightOf="@+id/HeadlineArtist"
         android:id="@+id/dropDownMenu"
         android:entries="@array/dropdownitems"
-        android:background="#000000"
-        android:layout_marginLeft="150dp"></Spinner>
+        android:layout_marginRight="50dp"></Spinner>
 
 </RelativeLayout>
