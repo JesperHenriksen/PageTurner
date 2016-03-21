@@ -13,7 +13,7 @@ import java.util.Queue;
 public class Sample {
 
     private static ArrayList<Short> shortQueue = new ArrayList<Short>();
-    private static int numberOfSecondsSaved = 2;
+    private static int numberOfSecondsSaved = 1;
     private static final int MAX_QUEUE_SIZE = 44100 * numberOfSecondsSaved;
 
     Sample(short b) { //Sample Constructor. Creates one sample with one byte
