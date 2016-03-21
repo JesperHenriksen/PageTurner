@@ -21,6 +21,13 @@
         <item>Artist 5</item>
         <item>Artist 6</item>
     </string-array>
+
+    <string-array name="dropdownitems">
+        <item>Reset Song</item>
+        <item>Show Sheet Music</item>
+        <item>Show Progress Bar</item>
+    </string-array>
+
     <string name="title_activity_choose_song">ChooseSong</string>
     <string name="title_activity_note_page">NotePage</string>
 </resources>

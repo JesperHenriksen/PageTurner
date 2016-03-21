@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="40dp"
+    android:background="@color/lightPurple">
+
+    <ImageView
+        android:id="@+id/spinnerIcons"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/lightPurple"
+        android:src="@drawable/dropdownmenu"
+        android:padding="3dp"/>
+
+    <TextView
+        android:id="@+id/menuItems"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@+id/spinnerIcons"
+        android:textColor="@color/purple"
+        android:text="."
+        android:textSize="25dp"
+        android:padding="2dp"
+        android:background="@color/lightPurple"/>
+
+</RelativeLayout>
