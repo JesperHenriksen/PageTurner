@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -32,8 +34,6 @@ public class NotePage extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-
 
     }
 
@@ -80,7 +80,12 @@ public class NotePage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public Bitmap createSubsetOfImage(int x, int y){
+        Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.longsong);
+        Bitmap result = Bitmap.createBitmap(src, x, y, 1800, 600);
 
+        return result;
+    }
 
 
 }
