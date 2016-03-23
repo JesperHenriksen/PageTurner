@@ -44,13 +44,6 @@
         android:layout_below="@+id/song_title"
         android:layout_toRightOf="@+id/note_image" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/purple"
-        android:layout_below="@+id/note_image"
-        android:layout_marginTop="25dp"></View>
-
 
 
 </RelativeLayout>

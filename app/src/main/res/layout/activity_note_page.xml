@@ -8,10 +8,13 @@
     tools:context="com.example.jesper.pageturner.NotePage"
     android:background="@color/lightPurple">
 
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ActionBarCostume">
+
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -19,9 +22,33 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         app:titleTextColor="@color/headlineColor"
-        android:elevation="4dp"
+        android:elevation="8dp"
         android:theme="@style/ActionBarCostume"
-        app:popupTheme="@style/ActionBarPopupThemeOverlay" />
+        app:popupTheme="@style/ActionBarPopupThemeOverlay">
+
+        <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:textSize="30dp"
+                android:text="Til vor lille gerning ud"/>
+
+            <!--<TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text=" - C.E.F. Weyse"
+                android:textStyle="italic"
+                android:textSize="20dp"
+
+                android:layout_marginTop="20dp"/>-->
+
+        </FrameLayout>
+    </android.support.v7.widget.Toolbar>
+
 
     </android.support.design.widget.AppBarLayout>
 

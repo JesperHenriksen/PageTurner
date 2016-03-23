@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -29,6 +30,39 @@ public class NotePage extends AppCompatActivity {
         Toolbar myToolBar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolBar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case android.R.id.home:
+                Intent back = new Intent(this, ChooseSong.class);
+                back.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(back);
+                return true;
+            case R.id.resetSongToolbar:
+                Intent resetSong = new Intent(this, NotePage.class);
+                resetSong.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(resetSong);
+                return true;
+            case R.id.showsheetmusicToolbar:
+                Intent sheetMusic = new Intent(this, ShowSheetMusic.class);
+                sheetMusic.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(sheetMusic);
+                return true;
+            case R.id.showProgressToolbar:
+                Intent progressBar = new Intent(this, ShowProgressBar.class);
+                progressBar.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(progressBar);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 
     @Override
@@ -45,5 +79,8 @@ public class NotePage extends AppCompatActivity {
         Intent intent = new Intent(NotePage.this, ChooseSong.class);
         startActivity(intent);
     }
+
+
+
 
 }
