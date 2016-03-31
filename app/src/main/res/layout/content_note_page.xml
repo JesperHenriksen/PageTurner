@@ -80,5 +80,31 @@
         android:background="@color/lightPurple"
         android:id="@+id/notepagebg" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="95dp"
+        android:id="@+id/longsongImage"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonUpdate"
+        android:text="Update song"
+        android:onClick="onClick"
+        android:layout_alignBottom="@+id/notepagebg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="87dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/noteguider"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/my_toolbar"
+        android:layout_marginLeft="100dp"/>
+
 
 </RelativeLayout>

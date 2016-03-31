@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,7 +22,8 @@ import android.widget.*;
 import android.widget.SpinnerAdapter;
 
 public class NotePage extends AppCompatActivity {
-
+    private Bitmap x;
+    private int i;
 
 
     @Override
@@ -34,6 +36,16 @@ public class NotePage extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        Button fab = (Button) findViewById(R.id.buttonUpdate);
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                x = createSubsetOfImage(500 + i, 0);
+                ImageView img = (ImageView) findViewById(R.id.longsongImage);
+                img.setImageBitmap(x);
+                i += 100;
+            }
+        });
 
     }
 
@@ -54,11 +66,11 @@ public class NotePage extends AppCompatActivity {
                 sheetMusic.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(sheetMusic);
                 return true;
-            case R.id.showProgressToolbar:
+           /* case R.id.showProgressToolbar:
                 Intent progressBar = new Intent(this, ShowProgressBar.class);
                 progressBar.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(progressBar);
-                return true;
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -82,7 +94,7 @@ public class NotePage extends AppCompatActivity {
 
     public Bitmap createSubsetOfImage(int x, int y){
         Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.longsong);
-        Bitmap result = Bitmap.createBitmap(src, x, y, 1800, 600);
+        Bitmap result = Bitmap.createBitmap(src, x, y, 1800, src.getHeight());
 
         return result;
     }
