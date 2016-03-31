@@ -6,20 +6,20 @@
 
     <string-array name="song_titles">
         <item>Til vor lille gerning ud</item>
-        <item>Song 2</item>
-        <item>Song 3</item>
-        <item>Song 4</item>
-        <item>Song 5</item>
-        <item>Song 6</item>
+        <item>Under the sea</item>
+        <item>Valerie</item>
+        <item>You and I</item>
+        <item>You and Me Are Gone</item>
+        <item>You Are</item>
     </string-array>
 
     <string-array name="artists">
-        <item>Unkown</item>
-        <item>Artist 2</item>
-        <item>Artist 3</item>
-        <item>Artist 4</item>
-        <item>Artist 5</item>
-        <item>Artist 6</item>
+        <item>C. E. F. Weyse</item>
+        <item>Disney</item>
+        <item>Amy Winehouse</item>
+        <item>Celine Dion</item>
+        <item>Jamie Cullum</item>
+        <item>Pearl Jam</item>
     </string-array>
 
     <string-array name="dropdownitems">
