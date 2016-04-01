@@ -107,5 +107,117 @@
         android:layout_marginLeft="100dp"/>
         -->
 
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="173dp"
+        android:background="#d7cfe3"
+        android:layout_below="@id/longsongImage"
+        />
+
+    <Button
+        android:id="@+id/secondsFive"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/transparentbutton"
+        android:text="1"
+        android:textColor="@color/bgColor"
+        android:layout_below="@id/longsongImage"
+        android:layout_marginTop="173dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="22dp"
+        />
+
+    <Button
+        android:id="@+id/secondsTen"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/transparentbutton"
+        android:text=" "
+        android:textColor="@color/bgColor"
+        android:layout_below="@id/longsongImage"
+        android:layout_marginTop="173dp"
+        android:layout_toRightOf="@+id/secondsFive"
+        android:textSize="22dp"
+        />
+
+    <Button
+        android:id="@+id/secondsFifteen"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/transparentbutton"
+        android:text="3"
+        android:textColor="@color/bgColor"
+        android:layout_below="@id/longsongImage"
+        android:layout_marginTop="173dp"
+        android:layout_toRightOf="@+id/secondsTen"
+        android:textSize="22dp"
+        />
+
+    <Button
+        android:id="@+id/secondsTwenty"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/transparentbutton"
+        android:text=" "
+        android:textColor="@color/bgColor"
+        android:layout_below="@id/longsongImage"
+        android:layout_marginTop="173dp"
+        android:layout_toRightOf="@+id/secondsFifteen"
+        android:textSize="22dp"
+        />
+
+    <Button
+        android:id="@+id/secondsTwentyFive"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/transparentbutton"
+        android:text="5"
+        android:textColor="@color/bgColor"
+        android:layout_below="@id/longsongImage"
+        android:layout_marginTop="173dp"
+        android:layout_toRightOf="@+id/secondsTwenty"
+        android:textSize="22dp"
+        />
+
+    <Button
+        android:id="@+id/secondsThirty"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/transparentbutton"
+        android:text=""
+        android:textColor="@color/bgColor"
+        android:layout_below="@id/longsongImage"
+        android:layout_marginTop="173dp"
+        android:layout_toRightOf="@+id/secondsTwentyFive"
+        android:textSize="22dp"
+        />
+
+    <Button
+        android:id="@+id/secondsThirtyFive"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/transparentbutton"
+        android:text="7"
+        android:textColor="@color/bgColor"
+        android:layout_below="@id/longsongImage"
+        android:layout_marginTop="173dp"
+        android:layout_toRightOf="@+id/secondsThirty"
+        android:textSize="22dp"
+        />
+    <Button
+        android:id="@+id/seconds40"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/transparentbutton"
+        android:text=" "
+        android:textColor="@color/bgColor"
+        android:layout_below="@id/longsongImage"
+        android:layout_marginTop="173dp"
+        android:layout_toRightOf="@+id/secondsThirtyFive"
+        android:textSize="22dp"
+        />
 
 </RelativeLayout>

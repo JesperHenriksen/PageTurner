@@ -10,5 +10,6 @@
     <color name="purpleButton">#a183d7</color>
     <color name="bgColor">#512da8</color>
     <color name="dropDown">#d7cfe3</color>
+    <color name="transparent">#0000</color>
 
 </resources>
