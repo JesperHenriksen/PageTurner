@@ -16,11 +16,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     private AudioRecordToFile recorder = null;
     private Button startButton = null;
     private Button stopButton = null;
     private Button playButton = null;
+    private ArrayList<Chord> listOfChordsInSong;
 
     //int[] note_image_resource = {R.drawable.notes1, R.drawable.notes1, R.drawable.notes1}
     @Override
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadSongs();
+        listOfChordsInSong= new ArrayList<>();
+
         startButton = (Button) findViewById(R.id.button);
         stopButton = (Button) findViewById(R.id.button2);
         playButton = (Button) findViewById(R.id.button3);
@@ -90,6 +95,67 @@ public class MainActivity extends AppCompatActivity {
             Song song = new Song(R.drawable.notes1, titles, artist_names[i]);
             i++;
         }
+    }
+
+    public Song loadSong(){
+        ArrayList<Chord> chords = new ArrayList<>();
+        //first block
+        chords.add(new Chord("F",0)); chords.add(new Chord("E", 0));
+        chords.add(new Chord("A", 0)); chords.add(new Chord("B", 0));
+        chords.add(new Chord("A", 0));
+        //second block
+        chords.add(new Chord("D", 0)); chords.add(new Chord("E", 0));
+        chords.add(new Chord("F", 0));
+        //third block
+        chords.add(new Chord("G", 0)); chords.add(new Chord("B", 0));
+        chords.add(new Chord("A", 0)); chords.add(new Chord("F", 0));
+        //fourth block
+        chords.add(new Chord("E", 0)); chords.add(new Chord("G", 0));
+        chords.add(new Chord("F", 0)); chords.add(new Chord("E", 0));
+        //fifth block
+        chords.add(new Chord("F", 0)); chords.add(new Chord("E", 0));
+        chords.add(new Chord("F", 0)); chords.add(new Chord("G", 0));
+        chords.add(new Chord("E", 0));
+        //sixth block
+        chords.add(new Chord("A", 0)); chords.add(new Chord("F", 0));
+        chords.add(new Chord("E", 0));
+        //seventh block
+        chords.add(new Chord("D", 0)); chords.add(new Chord("C", 0));
+        chords.add(new Chord("F", 0)); chords.add(new Chord("G", 0));
+        chords.add(new Chord("A", 0));
+        //eighth block
+        chords.add(new Chord("A", 0)); chords.add(new Chord("C", 0));
+        chords.add(new Chord("B", 0)); chords.add(new Chord("A", 0));
+        //ninth block
+        chords.add(new Chord("E", 0)); chords.add(new Chord("F", 0));
+        chords.add(new Chord("G", 0)); chords.add(new Chord("F", 0));
+        chords.add(new Chord("G", 0));
+        //tenth block
+        chords.add(new Chord("B", 0)); chords.add(new Chord("A", 0));
+        chords.add(new Chord("G", 0)); chords.add(new Chord("F", 0));
+        //eleventh block
+        chords.add(new Chord("A", 0)); chords.add(new Chord("A", 0));
+        chords.add(new Chord("B", 0)); chords.add(new Chord("G", 0));
+        chords.add(new Chord("D", 0));
+        //twelfth block
+        chords.add(new Chord("D", 0)); chords.add(new Chord("C#", 0));
+        chords.add(new Chord("B", 0));
+        //thirteenth block
+        chords.add(new Chord("A", 0)); chords.add(new Chord("A", 0));
+        chords.add(new Chord("A", 0)); chords.add(new Chord("B", 0));
+        chords.add(new Chord("A", 0));
+        //fourteenth block
+        chords.add(new Chord("D", 0)); chords.add(new Chord("D", 0));
+        chords.add(new Chord("C", 0));
+        //fifteenth block
+        chords.add(new Chord("B", 0)); chords.add(new Chord("C", 0));
+        chords.add(new Chord("D", 0)); chords.add(new Chord("D", 0));
+        chords.add(new Chord("G", 0));
+        //sixteenth block
+        chords.add(new Chord("F", 0)); chords.add(new Chord("E", 0));
+
+        Song song = new Song(chords,"Til vor lille gerning ud", "C.E.F. Weyse");
+        return song;
     }
 
 }

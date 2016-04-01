@@ -34,7 +34,7 @@ public class ChooseSong extends Activity {
         adapter = new SongAdapter(this, R.layout.row_layout);
         listSongNames.setAdapter(adapter);
 
-        for(Song songItem :new Song().getList()){
+        for(Song songItem : new Song().getList()){
             adapter.add(songItem);
         }
 

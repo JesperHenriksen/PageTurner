@@ -10,7 +10,7 @@ public class SongCollection {
         this.add(song);
     }
 
-    private void add(Song song) {
+    public static void add(Song song) {
         songList.add(song);
     }
 

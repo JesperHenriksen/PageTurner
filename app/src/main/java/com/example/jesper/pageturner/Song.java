@@ -8,13 +8,29 @@ public class Song {
     private String song_title;
     private String artist_name;
     private static ArrayList<Song> songCollection = new ArrayList<>();
+    private static ArrayList<Chord> listOfChords = new ArrayList<>();
+
     public Song(int note_image_resource, String song_title, String artist_name) {
         this.setNoteImageResource(note_image_resource);
         this.setSong_title(song_title);
         this.setArtistName(artist_name);
-        songCollection.add(this);
+        SongCollection.add(this);
     }
-    public Song(){}
+    public Song(ArrayList<Chord> listOfChords, String artist, String songName){
+        this.setSong_title(songName);
+        this.setArtistName(artist);
+        this.setListOfChords(listOfChords);
+        SongCollection.add(this);
+    }
+
+
+    public ArrayList<Chord> getListOfChords() {
+        return listOfChords;
+    }
+
+    private void setListOfChords(ArrayList<Chord> listOfChords) {
+        Song.listOfChords = listOfChords;
+    }
 
     public int getNoteImageResource() {
         return note_image_resource;

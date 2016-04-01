@@ -72,13 +72,13 @@ public class Complex {
     }
 
     // return the real or imaginary part
-    public double re() {
-        return re;
-    }
-
-    public double im() {
+    public double getIm() {
         return im;
     }
+    public double getRe(){
+        return this.re;
+    }
+
 
     // return a / b
     public Complex divides(Complex b) {
@@ -183,9 +183,6 @@ public class Complex {
         return y;
     }
 
-    public double getRe(){
-        return this.re;
-    }
 
     // display an array of Complex numbers to standard output
     public static void show(Complex[] x, String title) {

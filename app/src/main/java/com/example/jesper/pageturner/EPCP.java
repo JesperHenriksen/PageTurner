@@ -34,17 +34,17 @@ public class EPCP {
 
 
     private Complex[] getFFT(){
-        Complex[] data = this.getData();
-        Complex[] fft = Complex.fft(data);
+        Complex[] fft = Complex.fft(this.getData());
         return fft;
     }
 
-    public Chord getToneOfSignal(){
+    public double getToneOfSignal(){
         Chord chord = new Chord("a",0);
         Complex[] fft = this.getFFT();
         ArrayList<Double> powerSpectrum = this.getPowerSpectrum(fft);
-        Double harmonicSpectrum = new Double(this.getHarmonicSpectrum(powerSpectrum));
-        return  new Chord("a",0);
+        int argMax = getPositionOfMax(powerSpectrum);
+        double result = getW(argMax);
+        return result;
     }
 
     private double getHarmonicSpectrum(ArrayList<Double> list) {
@@ -61,6 +61,39 @@ public class EPCP {
             result.add(complexes[i].abs());
         }
         return result;
+    }
+
+    private double getFreqency(int w){
+        int samplingFreq =44100;
+        return (w*samplingFreq)/(2*Math.PI);
+    }
+    private double getW(int f){
+        double samplingFreq =44100;
+        return ((2*Math.PI)*(f/samplingFreq));
+    }
+    private Integer getPositionOfMax(ArrayList<Double> complexes){
+        int result = 0; double max = 0.0;
+        for(int i = 0; i < complexes.size(); i++){
+            if(max < complexes.get(i)){
+                max = complexes.get(i);
+                result = i;
+            }
+        }
+        return result;
+    }
+
+
+    private void filterZeroFromPowerSpectrum(ArrayList<Double> input){
+        int i = 0;
+        while (i != input.size()){
+            if(input.get(i) == 0){
+                input.remove(i);
+            }
+            else
+            {
+                i++;
+            }
+        }
     }
 
     private int getAutoCorrelation(){
