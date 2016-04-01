@@ -67,5 +67,5 @@ public class Song {
 
     public ArrayList<Song> getList() {
         return songCollection;
-    }
+    }//hej bob
 }
