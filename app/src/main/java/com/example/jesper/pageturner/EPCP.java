@@ -6,11 +6,11 @@ import java.util.ArrayList;
 public class EPCP {
 
     private static final int NUMBER_OF_MILLISECONDS = 1;
-    //amount of samples N
-    private static final int N = 441 * NUMBER_OF_MILLISECONDS;
+    private static double tone = 0;
+    private static final int N = 1024 * NUMBER_OF_MILLISECONDS;
     private Complex[] data;
 
-    EPCP(){
+    public EPCP(){
         loadSamples();
     }
 
@@ -18,15 +18,30 @@ public class EPCP {
         return data;
     }
 
+
+    public static double getTone() {
+        return tone;
+    }
+
+    public static void setTone(double tone) {
+        EPCP.tone = tone;
+    }
+
     private void setData(Complex[] data) {
         this.data = data;
+    }
+
+    public static int getN(){
+        return N;
     }
 
     private void loadSamples(){
         Complex[] dataCollection = new Complex[N];
         Complex iterator;
+        int[] result = new int[10];
         for(int i = 0; i < N; i++){
-            iterator = new Complex(Sample.popQueue(),0);
+            new Sample().popQueue(result);
+            iterator = new Complex(result[0],0);
             dataCollection[i] = iterator;
         }
         setData(dataCollection);
@@ -38,13 +53,11 @@ public class EPCP {
         return fft;
     }
 
-    public double getToneOfSignal(){
-        Chord chord = new Chord("a",0);
+    public void generateToneOfSignal(){
         Complex[] fft = this.getFFT();
         ArrayList<Double> powerSpectrum = this.getPowerSpectrum(fft);
         int argMax = getPositionOfMax(powerSpectrum);
-        double result = getW(argMax);
-        return result;
+        setTone(getW(argMax));
     }
 
     private double getHarmonicSpectrum(ArrayList<Double> list) {

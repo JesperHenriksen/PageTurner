@@ -60,7 +60,7 @@ public class AudioRecorder {
         for(int i = 0; i < buffer.length; i++) {
             if (buffer[i] == 0) {
                 zeroCounter ++;
-                if(zeroCounter >= 50)
+                if(zeroCounter > 50)
                     break;
             }
             if(buffer[i] != 0) {

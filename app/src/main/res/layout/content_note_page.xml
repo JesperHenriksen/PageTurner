@@ -97,6 +97,20 @@
         android:layout_alignBottom="@+id/notepagebg"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="87dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonTestRecord"
+        android:text="Record"
+        android:onClick="testRecording"
+        android:layout_above="@+id/buttonUpdate" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonTestTone"
+        android:text="ToneTesting"
+        android:onClick="testTone"
+        android:layout_above="@+id/buttonTestRecord" />
 
     <!--<ImageView
         android:layout_width="wrap_content"

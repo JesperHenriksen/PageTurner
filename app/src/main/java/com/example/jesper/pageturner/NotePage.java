@@ -24,7 +24,10 @@ import android.widget.SpinnerAdapter;
 public class NotePage extends AppCompatActivity {
     private Bitmap x;
     private int i;
-
+    private AudioRecorder recorder = null;
+    private boolean isRecording = false;
+    private Thread toneSamplingThread = null;
+    private double test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class NotePage extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        recorder = new AudioRecorder();
 
         Button fab = (Button) findViewById(R.id.buttonUpdate);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +50,34 @@ public class NotePage extends AppCompatActivity {
                 i += 100;
             }
         });
+        final Button recordButton = (Button) findViewById(R.id.buttonTestRecord);
+        recordButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
 
+                if (isRecording == false) {
+                    try {
+                        recorder.startRecording();
+                        recordButton.setText("Stop Recording");
+                        isRecording = true;
+                        toneSamplingThread = new Thread(new Runnable() {
+                            public void run() {
+                                while(isRecording){
+                                    System.out.println("tone value = " + EPCP.getTone());
+                                }
+                            }
+                        }, "Getting Tone of Signal Thread");
+                        toneSamplingThread.start();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    recorder.stopRecording();
+                    toneSamplingThread = null;
+                    isRecording = false;
+                    recordButton.setText("Start Recording");
+                }
+            }
+        });
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
