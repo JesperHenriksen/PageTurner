@@ -23,8 +23,8 @@ public class Complex {
 
     // return abs/modulus/magnitude and angle/phase/argument
     public double abs() {
-        return Math.hypot(re, im);
-    } // Math.sqrt(re*re + im*im)
+        return Math.sqrt(re * re + im * im);
+    } // Math.sqrt(re*re + im*im); Math.hypot(re, im);
 
     public double phase() {
         return Math.atan2(im, re);
@@ -188,7 +188,10 @@ public class Complex {
     public static void show(Complex[] x, String title) {
         System.out.println(title);
         for (int i = 0; i < x.length; i++) {
-            System.out.println(x[i]);
+            System.out.print(x[i] + " ");
+            if(i == 500){
+                System.out.println("");
+            }
         }
         System.out.println();
     }

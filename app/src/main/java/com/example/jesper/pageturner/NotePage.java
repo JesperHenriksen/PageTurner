@@ -40,11 +40,14 @@ public class NotePage extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         recorder = new AudioRecorder();
-
+        x = createSubsetOfImage(i, 0);
+        ImageView img = (ImageView) findViewById(R.id.longsongImage);
+        img.setImageBitmap(x);
+        i = 100;
         Button fab = (Button) findViewById(R.id.buttonUpdate);
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                x = createSubsetOfImage(500 + i, 0);
+                x = createSubsetOfImage(i, 0);
                 ImageView img = (ImageView) findViewById(R.id.longsongImage);
                 img.setImageBitmap(x);
                 i += 100;
@@ -53,7 +56,6 @@ public class NotePage extends AppCompatActivity {
         final Button recordButton = (Button) findViewById(R.id.buttonTestRecord);
         recordButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-
                 if (isRecording == false) {
                     try {
                         recorder.startRecording();
@@ -62,7 +64,7 @@ public class NotePage extends AppCompatActivity {
                         toneSamplingThread = new Thread(new Runnable() {
                             public void run() {
                                 while(isRecording){
-                                    System.out.println("tone value = " + EPCP.getTone());
+                                    //System.out.println("tone value = " + EPCP.getTone());
                                 }
                             }
                         }, "Getting Tone of Signal Thread");
@@ -125,8 +127,7 @@ public class NotePage extends AppCompatActivity {
 
     public Bitmap createSubsetOfImage(int x, int y){
         Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.longsong);
-        Bitmap result = Bitmap.createBitmap(src, x, y, 1800, src.getHeight());
-
+        Bitmap result = Bitmap.createBitmap(src, x, y, 900, src.getHeight());
         return result;
     }
 

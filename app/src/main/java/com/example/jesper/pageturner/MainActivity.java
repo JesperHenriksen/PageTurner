@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadSongs();
         listOfChordsInSong= new ArrayList<>();
 
         startButton = (Button) findViewById(R.id.button);
@@ -85,15 +84,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void loadSongs(){
-        String[] artist_names = getResources().getStringArray(R.array.artists);
-        String[] song_titles = getResources().getStringArray(R.array.song_titles);
-        int i = 0;
-        for (String titles: song_titles) {
-            Song song = new Song(R.drawable.notes1, titles, artist_names[i]);
-            i++;
-        }
-    }
+
 
     public Song loadSong(){
         ArrayList<Chord> chords = new ArrayList<>();

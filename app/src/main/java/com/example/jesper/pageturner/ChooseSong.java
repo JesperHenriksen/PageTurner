@@ -27,7 +27,7 @@ public class ChooseSong extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_song);
-
+        loadSongs();
         listSongNames = (ListView) findViewById(R.id.songList);
         artists = getResources().getStringArray(R.array.artists);
         song_titles = getResources().getStringArray(R.array.song_titles);
@@ -51,6 +51,15 @@ public class ChooseSong extends Activity {
                 }
         );
 
+    }
+    private void loadSongs(){
+        String[] artist_names = getResources().getStringArray(R.array.artists);
+        String[] song_titles = getResources().getStringArray(R.array.song_titles);
+        int i = 0;
+        for (String titles: song_titles) {
+            Song song = new Song(R.drawable.notes1, titles, artist_names[i]);
+            i++;
+        }
     }
 
 }
