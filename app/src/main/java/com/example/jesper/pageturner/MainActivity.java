@@ -19,7 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private AudioRecorder recorder = null;
+    private AudioRecordToFile recorder = null;
     private Button startButton = null;
     private Button stopButton = null;
     private Button playButton = null;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         startButton = (Button) findViewById(R.id.button);
         stopButton = (Button) findViewById(R.id.button2);
         playButton = (Button) findViewById(R.id.button3);
-        recorder = new AudioRecorder();
+        recorder = new AudioRecordToFile();
         startButton.setOnClickListener(new btnClick());
         stopButton.setOnClickListener(new btnClick());
         playButton.setOnClickListener(new btnClick());

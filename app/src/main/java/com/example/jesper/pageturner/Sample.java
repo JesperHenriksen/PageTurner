@@ -29,8 +29,13 @@ public class Sample {
     private Complex[] loadSamples(){
         Complex[] dataCollection = new Complex[EPCP.getN()];
         Complex iterator;
+        double meanValue = 0.0;
         for(int i = 0; i < EPCP.getN(); i++){
-            iterator = new Complex(this.popQueue(),0);
+            meanValue += (double) shortQueue.get(i);
+        }
+        meanValue = meanValue/EPCP.getN();
+        for(int i = 0; i < EPCP.getN(); i++){
+            iterator = new Complex(this.popQueue() - meanValue,0);
             dataCollection[i] = iterator;
         }
         return dataCollection;
