@@ -189,7 +189,7 @@ public class Complex {
         System.out.println(title);
         for (int i = 0; i < x.length; i++) {
             System.out.print(x[i] + " ");
-            if(i == 500){
+            if(i % 200 == 0){
                 System.out.println("");
             }
         }

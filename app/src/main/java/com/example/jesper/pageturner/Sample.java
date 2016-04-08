@@ -15,14 +15,16 @@ public class Sample {
     private static ArrayList<Short> shortQueue = new ArrayList<>();
     //private static int numberOfSecondsSaved = 1;
     private static final int MAX_QUEUE_SIZE = 20000;
+    private static boolean testing = true;
 
     public Sample(short b) { //Sample Constructor. Creates one sample
         if(shortQueue.size() < MAX_QUEUE_SIZE  && b > 20 && b < 20000) {
             addShortToQueue(b);
         }
-        if(shortQueue.size() > EPCP.getN()){
+        if(shortQueue.size() > EPCP.getN() && testing == true){
             EPCP epcp = new EPCP(loadSamples());
             epcp.generateToneOfSignal();
+            //testing = false;
         }
     }
 
