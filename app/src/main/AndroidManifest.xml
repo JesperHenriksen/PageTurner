@@ -17,7 +17,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         <activity
+            android:screenOrientation="landscape"
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
@@ -28,6 +30,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="landscape"
             android:name=".RecorderPage"
             android:label="@string/title_activity_recorder_page"
             android:parentActivityName=".MainActivity">
@@ -36,6 +39,7 @@
                 android:value="com.example.jesper.pageturner.MainActivity" />
         </activity>
         <activity
+            android:screenOrientation="landscape"
             android:name=".ChooseSong"
             android:label="@string/title_activity_choose_song"
             android:parentActivityName=".MainActivity">
@@ -44,14 +48,17 @@
                 android:value="com.example.jesper.pageturner.MainActivity" />
         </activity>
         <activity
+            android:screenOrientation="landscape"
             android:name=".NotePage"
             android:label="@string/title_activity_note_page"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
+            android:screenOrientation="landscape"
             android:name=".ShowSheetMusic"
             android:label="@string/title_activity_show_sheet_music"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
+            android:screenOrientation="landscape"
             android:name=".ShowProgressBar"
             android:label="@string/title_activity_show_progress_bar"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>

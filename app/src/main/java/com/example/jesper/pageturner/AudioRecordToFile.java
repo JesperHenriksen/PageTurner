@@ -12,11 +12,11 @@ public class AudioRecordToFile {
     private MediaRecorder recorder;
     private MediaPlayer player;
     private static final String OUTPUT_FILE_PATH =
-            Environment.getExternalStorageDirectory().getAbsolutePath() + "/recording.3gp";
+            Environment.getExternalStorageDirectory().getAbsolutePath() + "/recording2.3gp";
 
     public void startRecording() throws Exception{
 
-        File save = new File(OUTPUT_FILE_PATH, "recording.3pg");
+        File save = new File(OUTPUT_FILE_PATH, "recording2.3pg");
 
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
