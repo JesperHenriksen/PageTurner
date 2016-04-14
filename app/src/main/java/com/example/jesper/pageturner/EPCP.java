@@ -5,17 +5,16 @@ import java.util.ArrayList;
 
 public class EPCP {
 
+    private Complex[] data;
     private static final int NUMBER_OF_MILLISECONDS = 1;
-    private static int tone = 0;
-
     //1024, 2048, 4096, 8192, 16384, 32768
     private static final int N = 1024 * NUMBER_OF_MILLISECONDS;
-    private Complex[] data;
+    private static int tone = 0;
     private static final double SAMPLING_MILLISECONDS = N; // 30 milliseconds
     private static final int MAX_FREQUENCY = 660;
     private static final int MIN_FREQUENCY = 60;
     private static final int NUMBER_OF_PEAKS_ESTIMATED = 5;
-    private static int[] testing_frequencies = new int[MAX_FREQUENCY - MIN_FREQUENCY]; //w0
+    private static int[] testingFrequencies = new int[MAX_FREQUENCY - MIN_FREQUENCY]; //w0
     private static int frequency = 0;
     private static ArrayList<Integer> frequencyMedian = new ArrayList<>();
 
@@ -27,15 +26,12 @@ public class EPCP {
     private void initializeVariables(){
         int iterator = 0;
         for(int i = MIN_FREQUENCY; i < MAX_FREQUENCY; i++){
-            testing_frequencies[iterator] = i;
+            testingFrequencies[iterator] = i;
             iterator++;
         }
         //System.out.println("length = " + testing_frequencies.length + " testing FQ min = " + testing_frequencies[0] + " Max " + testing_frequencies[600-1]);
     }
 
-    private void loadTestSignal(){
-
-    }
     //test signal at 150 hz, 0.03 seconds
     private static Complex[] testSignal(double amplitude) {
         int N = EPCP.N;
@@ -67,12 +63,12 @@ public class EPCP {
         double resultSummation = 0;
         //setData(testSignal(1)); // testing at 150 hz for a periodic signal for 0.03 seconds
         Complex.show(data,"original data = ");
-        /*Complex[] fft = Complex.fft(this.getData());
+        Complex[] fft = Complex.fft(this.getData());
         //Complex.show(fft,"fft = ");
         double w = 0;
         ArrayList<Double> harmonicSummationValues = new ArrayList<>(); //Array where results of summations are stored
-        for(int i = 0; i < testing_frequencies.length; i++) { //testing of all test frequencies, testing_frequencies[i]
-            double w0 = 2 * Math.PI * testing_frequencies[i] / AudioRecorder.getSampleFrequency(); //calculate w0 of currect frequency
+        for(int i = 0; i < testingFrequencies.length; i++) { //testing of all test frequencies, testing_frequencies[i]
+            double w0 = 2 * Math.PI * testingFrequencies[i] / AudioRecorder.getSampleFrequency(); //calculate w0 of currect frequency
             for(int j = 1; j < NUMBER_OF_PEAKS_ESTIMATED +1; j++) { // tests current frequency at number of peaks
                 w = w0 * j; // calculates different w0 values times a scalar
                 //System.out.print("w " + w + " ");
@@ -125,7 +121,7 @@ public class EPCP {
     }
 
     private int getFreqencyOfIndex(int index){
-        return testing_frequencies[index];
+        return testingFrequencies[index];
     }
     //freqency = index / N * sampleFQ
     private double getPitchEstimation(ArrayList<Double> powerSpectrumSquared, int iterator){

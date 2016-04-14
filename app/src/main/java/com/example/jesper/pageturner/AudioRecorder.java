@@ -39,10 +39,6 @@ public class AudioRecorder {
     public int getMinBufferSize() {
         return minBufferSize;
     }
-    public void playRecording(){
-
-    }
-
 
     public void startRecording(){
         isRecording = true;

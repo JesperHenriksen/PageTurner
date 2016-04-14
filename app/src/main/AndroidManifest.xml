@@ -57,11 +57,6 @@
             android:name=".ShowSheetMusic"
             android:label="@string/title_activity_show_sheet_music"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:screenOrientation="landscape"
-            android:name=".ShowProgressBar"
-            android:label="@string/title_activity_show_progress_bar"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

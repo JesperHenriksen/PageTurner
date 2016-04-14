@@ -59,7 +59,7 @@ public class ExistingChords {
 
     }
 
-    public List<Chord> getExistingChordsList(){
+    public List<Chord> getExistingChordList(){
         return existingChords;
     }
 

@@ -63,8 +63,6 @@ public class NotePage extends AppCompatActivity {
 
         Button eight = (Button) findViewById(R.id.eight);
         eight.setOnClickListener(new btnClick());
-
-
     }
 
     @Override
@@ -140,7 +138,7 @@ public class NotePage extends AppCompatActivity {
 
 
     class btnClick implements View.OnClickListener {
-        ImageView img;
+        private ImageView img;
         private int getMovementValue (int i) {
             Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.longsong);
             return (int) src.getWidth() * i/8;
@@ -148,7 +146,7 @@ public class NotePage extends AppCompatActivity {
 
         private void listenForTone(){
             recorder.startRecording();
-            /*while(isFirstRun) {
+            while(isFirstRun) {
                 //System.out.println("Listening for tone " + EPCP.getFrequency());
                 if(EPCP.getFrequency() > 80 && EPCP.getFrequency() < 660){
                     recorder.stopRecording();
@@ -156,7 +154,7 @@ public class NotePage extends AppCompatActivity {
                     isFirstRun = false;
                     return;
                 }
-            }*/
+            }
         }
 
         @Override
@@ -164,7 +162,7 @@ public class NotePage extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.buttonUpdate:
                     this.listenForTone();
-                    /*if (isPlaying == false) {
+                    if (isPlaying == false) {
                         Button button = (Button) findViewById(v.getId());
                         button.setText("Stop recording");
                         isPlaying = true;
@@ -201,7 +199,7 @@ public class NotePage extends AppCompatActivity {
                         button.setText("Start recording");
                         moveImageThread = null;
                         isPlaying = false;
-                    }*/
+                    }
                     break;
 
                 case R.id.one:
@@ -250,7 +248,6 @@ public class NotePage extends AppCompatActivity {
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -260,11 +257,11 @@ public class NotePage extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void backChooseSong(View view)
+    /*public void backChooseSong(View view)
     {
         Intent intent = new Intent(NotePage.this, ChooseSong.class);
         startActivity(intent);
-    }
+    }*/
 
     public Bitmap createSubsetOfImage(int x, int y){
         int widthOfSubset = 1200;

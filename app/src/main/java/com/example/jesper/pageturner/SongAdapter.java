@@ -12,16 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 class SongAdapter extends ArrayAdapter{
-    List list = new ArrayList();
-    SongAdapter(Context context, int resource){
+    private List list = new ArrayList();
+
+    public SongAdapter(Context context, int resource){
         super(context, resource);
     }
 
     static class DataHandler{
-        ImageView note;
-        TextView title;
-        TextView artist;
+        public ImageView note;
+        public TextView title;
+        public TextView artist;
     }
+
     public void add(Object object) {
         super.add(object);
         list.add(object);
@@ -41,8 +43,8 @@ class SongAdapter extends ArrayAdapter{
             row = songInflater.inflate(R.layout.row_layout, parent, false);
             handler = new DataHandler();
             handler.note = (ImageView) row.findViewById(R.id.note_image);
-            handler.title = (TextView) row.findViewById(R.id.song_title);
-            handler.artist = (TextView) row.findViewById(R.id.artist_name);
+            handler.title = (TextView) row.findViewById(R.id.songTitle);
+            handler.artist = (TextView) row.findViewById(R.id.artistName);
             row.setTag(handler);
         }
         else{

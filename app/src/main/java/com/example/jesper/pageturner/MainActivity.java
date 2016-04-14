@@ -23,15 +23,12 @@ public class MainActivity extends AppCompatActivity {
     private Button startButton = null;
     private Button stopButton = null;
     private Button playButton = null;
-    private ArrayList<Chord> listOfChordsInSong;
 
     //int[] note_image_resource = {R.drawable.notes1, R.drawable.notes1, R.drawable.notes1}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listOfChordsInSong= new ArrayList<>();
-
         startButton = (Button) findViewById(R.id.button);
         stopButton = (Button) findViewById(R.id.button2);
         playButton = (Button) findViewById(R.id.button3);
@@ -86,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public Song loadSong(){
+    /*public Song loadSong(){
         ArrayList<Chord> chords = new ArrayList<>();
         //first block
         chords.add(new Chord("F",0)); chords.add(new Chord("E", 0));
@@ -145,6 +142,6 @@ public class MainActivity extends AppCompatActivity {
 
         Song song = new Song(chords,"Til vor lille gerning ud", "C.E.F. Weyse");
         return song;
-    }
+    }*/
 
 }
