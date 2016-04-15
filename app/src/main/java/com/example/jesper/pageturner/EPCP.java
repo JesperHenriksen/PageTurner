@@ -62,7 +62,7 @@ public class EPCP {
     public void generateToneOfSignal(){
         double resultSummation = 0;
         //setData(testSignal(1)); // testing at 150 hz for a periodic signal for 0.03 seconds
-        Complex.show(data,"original data = ");
+        //Complex.show(data,"original data = ");
         Complex[] fft = Complex.fft(this.getData());
         //Complex.show(fft,"fft = ");
         double w = 0;
@@ -87,7 +87,7 @@ public class EPCP {
         int argMax = getPositionOfMax(harmonicSummationValues);
         //System.out.println(" max arg " + argMax + " arraysize " + " w " + w);
         setFrequency(getFreqencyOfIndex(argMax));
-        //System.out.println(" frequency = " + getFrequency());
+        System.out.println(" frequency = " + getFrequency());
         /*frequencyMedian.add(getFrequency());
         if(frequencyMedian.size() > 9){
             frequencyMedian.remove(0);

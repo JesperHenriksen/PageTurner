@@ -24,7 +24,6 @@ public class Sample {
         if(shortQueue.size() > EPCP.getN() && testing == true){
             EPCP epcp = new EPCP(loadSamples());
             epcp.generateToneOfSignal();
-            //testing = false;
         }
     }
 

@@ -32,7 +32,7 @@ public class NotePage extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        recorder = new AudioRecorder();
+
         x = createSubsetOfImage(i, 0);
         ImageView img = (ImageView) findViewById(R.id.longsongImage);
         img.setImageBitmap(x);
@@ -93,19 +93,15 @@ public class NotePage extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         // Another activity is taking focus (this activity is about to be "paused").
-        try {
-            if (moveImageThread != null) {
-                moveImageThread.wait();
-            }
-            /*if(backwardPedalThread != null){
-                backwardPedalThread.wait();
-            }
-            if(forwardPedalThread != null) {
-                forwardPedalThread.wait();
-            }*/
-        }catch (InterruptedException e){
-            e.printStackTrace();
+        if (moveImageThread != null) {
+            moveImageThread = null;
         }
+        /*if(backwardPedalThread != null){
+            backwardPedalThread.wait();
+        }
+        if(forwardPedalThread != null) {
+            forwardPedalThread.wait();
+        }*/
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
@@ -145,11 +141,10 @@ public class NotePage extends AppCompatActivity {
         }
 
         private void listenForTone(){
-            recorder.startRecording();
+
             while(isFirstRun) {
                 //System.out.println("Listening for tone " + EPCP.getFrequency());
                 if(EPCP.getFrequency() > 80 && EPCP.getFrequency() < 660){
-                    recorder.stopRecording();
                     System.out.println("Listening for tone complete " + EPCP.getFrequency());
                     isFirstRun = false;
                     return;
@@ -161,7 +156,7 @@ public class NotePage extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.buttonUpdate:
-                    this.listenForTone();
+                    //this.listenForTone();
                     if (isPlaying == false) {
                         Button button = (Button) findViewById(v.getId());
                         button.setText("Stop recording");
@@ -170,6 +165,8 @@ public class NotePage extends AppCompatActivity {
                             public void run() {
                                 while (isPlaying) {
                                     synchronized (this) {
+                                        recorder = new AudioRecorder();
+                                        recorder.startRecording();
                                         try {
                                             wait(100);
                                         } catch (InterruptedException e) {
@@ -197,6 +194,7 @@ public class NotePage extends AppCompatActivity {
                     } else {
                         Button button = (Button) findViewById(v.getId());
                         button.setText("Start recording");
+                        recorder.stopRecording();
                         moveImageThread = null;
                         isPlaying = false;
                     }

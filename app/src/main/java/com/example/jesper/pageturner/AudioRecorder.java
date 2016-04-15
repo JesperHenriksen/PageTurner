@@ -75,8 +75,8 @@ public class AudioRecorder {
 
     public void stopRecording(){
         isRecording = false;
-        audioRecord.stop();
+        this.audioRecord.stop();
         //audioRecord.release();
-        recordingThread = null;
+        this.recordingThread = null;
     }
 }
