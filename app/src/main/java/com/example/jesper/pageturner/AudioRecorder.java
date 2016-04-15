@@ -10,7 +10,7 @@ import android.media.MediaRecorder;
 public class AudioRecorder {
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
-    private static final int RECORDER_SAMPLE_FREQUENCY = 44100;
+    private static final int RECORDER_SAMPLE_RATE = 44100;
 
     private AudioRecord audioRecord = null;
     private int minBufferSize = 0;
@@ -21,20 +21,17 @@ public class AudioRecorder {
 
     AudioRecorder(){
         minBufferSize = AudioRecord.getMinBufferSize(
-                RECORDER_SAMPLE_FREQUENCY,
+                RECORDER_SAMPLE_RATE,
                 RECORDER_CHANNELS,
                 RECORDER_AUDIO_ENCODING
         );
         audioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC,
-                RECORDER_SAMPLE_FREQUENCY,
+                RECORDER_SAMPLE_RATE,
                 RECORDER_CHANNELS,
                 RECORDER_AUDIO_ENCODING,
                 minBufferSize
         );
         buffer = new short[minBufferSize];
-    }
-    public static int getSampleFrequency(){
-        return RECORDER_SAMPLE_FREQUENCY;
     }
     public int getMinBufferSize() {
         return minBufferSize;
@@ -78,5 +75,9 @@ public class AudioRecorder {
         audioRecord.stop();
         //audioRecord.release();
         recordingThread = null;
+    }
+
+    public int getSampleRate() {
+        return RECORDER_SAMPLE_RATE;
     }
 }
