@@ -30,7 +30,7 @@ public class Song {
     }
 
     public static void nextChord(){
-        if(listOfChords.size() > currentIndex) {
+        if(listOfChords.size() - 1 > currentIndex) {
             currentIndex++;
         }
     }
