@@ -27,6 +27,9 @@ public class NotePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_page);
 
+        Button button = (Button) findViewById(R.id.buttonUpdate);
+        button.setText("Start recording");
+        Song.loadSong();
         Toolbar myToolBar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolBar);
 
@@ -132,12 +135,11 @@ public class NotePage extends AppCompatActivity {
 
     }
 
-
     class btnClick implements View.OnClickListener {
         private ImageView img;
         private int getMovementValue (int i) {
             Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.longsong);
-            return (int) src.getWidth() * i/8;
+            return src.getWidth() * i/8;
         }
 
         private void listenForTone(){
@@ -157,22 +159,27 @@ public class NotePage extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.buttonUpdate:
                     //this.listenForTone();
-                    if (isPlaying == false) {
+                    System.out.println("started: is playing = " + isPlaying);
+                    if(isPlaying)
+                        isPlaying = false;
+                    else
+                        isPlaying = true;
+                    System.out.println("before thread: is playing = " + isPlaying);
+                    if (isPlaying) {
                         Button button = (Button) findViewById(v.getId());
                         button.setText("Stop recording");
-                        isPlaying = true;
+                        recorder = new AudioRecorder();
+                        recorder.startRecording();
                         moveImageThread = new Thread(new Runnable() {
                             public void run() {
                                 while (isPlaying) {
-                                    synchronized (this) {
-                                        recorder = new AudioRecorder();
-                                        recorder.startRecording();
-                                        try {
-                                            wait(100);
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                        x = createSubsetOfImage(i, 0);
+                                    try {
+                                        moveImageThread.sleep(250);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    if(Song.getCurrentIndex() % 3 == 0) {
+                                        x = createSubsetOfImage(Song.getCurrentIndex()*100, 0);
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
@@ -180,26 +187,22 @@ public class NotePage extends AppCompatActivity {
                                                 img.setImageBitmap(x);
                                             }
                                         });
-                                        i += 100;
-                                        try {
-                                            moveImageThread.sleep(250);
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
                                     }
                                 }
+
                             }
                         }, "Moves image over time");
                         moveImageThread.start();
-                    } else {
+                    }
+                    else if(!isPlaying){
+                        System.out.println("stopped thread: isPlaying = " + isPlaying);
                         Button button = (Button) findViewById(v.getId());
                         button.setText("Start recording");
                         recorder.stopRecording();
                         moveImageThread = null;
-                        isPlaying = false;
                     }
+                    System.out.println("After thread: is playing = " + isPlaying);
                     break;
-
                 case R.id.one:
                     img = (ImageView) findViewById(R.id.longsongImage);
                     x = createSubsetOfImage(0, 0);
@@ -265,10 +268,8 @@ public class NotePage extends AppCompatActivity {
         int widthOfSubset = 1200;
         Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.longsong);
         if(x + widthOfSubset > src.getWidth()){
-            Bitmap result = Bitmap.createBitmap(src, src.getWidth() - widthOfSubset - 1 , y, widthOfSubset, src.getHeight());
-            return result;
+            return Bitmap.createBitmap(src, src.getWidth() - widthOfSubset - 1 , y, widthOfSubset, src.getHeight());
         }
-        Bitmap result = Bitmap.createBitmap(src, x, y, widthOfSubset, src.getHeight());
-        return result;
+        return Bitmap.createBitmap(src, x, y, widthOfSubset, src.getHeight());
     }
 }

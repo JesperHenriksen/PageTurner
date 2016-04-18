@@ -4,9 +4,6 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 
-
-
-
 public class AudioRecorder {
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
@@ -59,7 +56,7 @@ public class AudioRecorder {
         for(int i = 0; i < buffer.length; i++) {
             if (buffer[i] == 0) {
                 zeroCounter ++;
-                if(zeroCounter > 50)
+                if(zeroCounter > 500)
                     break;
             }
             if(buffer[i] != 0) {
@@ -74,6 +71,7 @@ public class AudioRecorder {
     }
 
     public void stopRecording(){
+        System.out.println("Stopping recorder... ");
         isRecording = false;
         this.audioRecord.stop();
         //audioRecord.release();

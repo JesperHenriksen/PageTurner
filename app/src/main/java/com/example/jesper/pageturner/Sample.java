@@ -21,7 +21,7 @@ public class Sample {
         if(shortQueue.size() < MAX_QUEUE_SIZE  && b > 20 && b < 20000) {
             addShortToQueue(b);
         }
-        if(shortQueue.size() > EPCP.getN() && testing == true){
+        if(shortQueue.size() > EPCP.getN() && testing){
             EPCP epcp = new EPCP(loadSamples());
             epcp.generateToneOfSignal();
         }
@@ -43,21 +43,17 @@ public class Sample {
     }
 
     public int popQueue(){
-        int result = 0;
+        int result;
         if (shortQueue.size() < 1 || shortQueue == null || shortQueue.get(0) == null) {
             return 0;
         }
         //System.out.println("Size : " + shortQueue.size());
         result = shortQueue.get(0);
-        try{
-            removeFirstElement();
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }
+        removeFirstElement();
         return result;
     }
 
-    private synchronized void removeFirstElement() throws InterruptedException { shortQueue.remove(0);}
+    private synchronized void removeFirstElement()  { shortQueue.remove(0);}
 
     public static void resetQueue(){ shortQueue.clear();}
 }

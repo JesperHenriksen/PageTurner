@@ -65,7 +65,7 @@ public class EPCP {
         //Complex.show(data,"original data = ");
         Complex[] fft = Complex.fft(this.getData());
         //Complex.show(fft,"fft = ");
-        double w = 0;
+        double w;
         ArrayList<Double> harmonicSummationValues = new ArrayList<>(); //Array where results of summations are stored
         for(int i = 0; i < testingFrequencies.length; i++) { //testing of all test frequencies, testing_frequencies[i]
             double w0 = 2 * Math.PI * testingFrequencies[i] / AudioRecorder.getSampleFrequency(); //calculate w0 of currect frequency
@@ -87,22 +87,45 @@ public class EPCP {
         int argMax = getPositionOfMax(harmonicSummationValues);
         //System.out.println(" max arg " + argMax + " arraysize " + " w " + w);
         setFrequency(getFreqencyOfIndex(argMax));
-        System.out.println(" frequency = " + getFrequency());
-        /*frequencyMedian.add(getFrequency());
-        if(frequencyMedian.size() > 9){
+        //System.out.println(" frequency = " + getFrequency());
+        setTone(getMedian());
+        System.out.println("Tone = " +getTone()+ " frequency median = " + frequencyMedian.toString());
+        if(Chord.isEqual(getFundamentalFrequency(getTone()), Song.getCurrentChord().getFrequency())) {
+            Song.nextChord();
+        }
+    }
+
+    private int getFundamentalFrequency(int tone){
+        if(tone == 0){
+         return 0;
+        }
+        int result = 0;
+        if(tone > 220){
+            return (tone % 220);
+        }
+        if(tone < 220){
+            result = tone * 2;
+            getFundamentalFrequency(result);
+        }
+        return result;
+    }
+
+    private int getMedian(){
+        frequencyMedian.add(getFrequency());
+        if(frequencyMedian.size() > 7){
             frequencyMedian.remove(0);
         }
         ArrayList<Integer> x = new ArrayList<>(frequencyMedian);
         bubbleSort(x);
-        if(x.size() > 5)
-            setTone(x.get(4));
-        System.out.println("Tone = " +getTone()+ " frequency median = " + frequencyMedian.toString() + " sorted " + x.toString());
-        */
+        if(x.size() > 4)
+            return(x.get((x.size()/2 )- 1));
+        else
+            return 0;
     }
 
     private void bubbleSort(ArrayList<Integer> x){
-        int temp = 0;
-        int numberOfSwaps = 0;
+        int temp;
+        int numberOfSwaps;
         boolean stop = false;
         while(!stop) {
             numberOfSwaps = 0;
