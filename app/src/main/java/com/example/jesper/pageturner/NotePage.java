@@ -28,7 +28,7 @@ public class NotePage extends AppCompatActivity {
         setContentView(R.layout.activity_note_page);
 
         Button button = (Button) findViewById(R.id.buttonUpdate);
-        button.setText("Start recording");
+        button.setText("Start");
         Song.loadSong();
         Toolbar myToolBar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolBar);
@@ -147,7 +147,7 @@ public class NotePage extends AppCompatActivity {
             while(isFirstRun) {
                 //System.out.println("Listening for tone " + EPCP.getFrequency());
                 if(EPCP.getFrequency() > 80 && EPCP.getFrequency() < 660){
-                    System.out.println("Listening for tone complete " + EPCP.getFrequency());
+                    //System.out.println("Listening for tone complete " + EPCP.getFrequency());
                     isFirstRun = false;
                     return;
                 }
@@ -159,7 +159,7 @@ public class NotePage extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.buttonUpdate:
                     //this.listenForTone();
-                    System.out.println("started: is playing = " + isPlaying);
+                    //System.out.println("started: is playing = " + isPlaying);
                     if(isPlaying)
                         isPlaying = false;
                     else
@@ -167,7 +167,7 @@ public class NotePage extends AppCompatActivity {
                     System.out.println("before thread: is playing = " + isPlaying);
                     if (isPlaying) {
                         Button button = (Button) findViewById(v.getId());
-                        button.setText("Stop recording");
+                        button.setText("Stop");
                         recorder = new AudioRecorder();
                         recorder.startRecording();
                         moveImageThread = new Thread(new Runnable() {
@@ -179,7 +179,7 @@ public class NotePage extends AppCompatActivity {
                                         e.printStackTrace();
                                     }
                                     if(Song.getCurrentIndex() % 3 == 0) {
-                                        x = createSubsetOfImage(Song.getCurrentIndex()*100, 0);
+                                        x = createSubsetOfImage(Song.getCurrentIndex()*95, 0);
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
@@ -195,13 +195,13 @@ public class NotePage extends AppCompatActivity {
                         moveImageThread.start();
                     }
                     else if(!isPlaying){
-                        System.out.println("stopped thread: isPlaying = " + isPlaying);
+                        //System.out.println("stopped thread: isPlaying = " + isPlaying);
                         Button button = (Button) findViewById(v.getId());
-                        button.setText("Start recording");
+                        button.setText("Start");
                         recorder.stopRecording();
                         moveImageThread = null;
                     }
-                    System.out.println("After thread: is playing = " + isPlaying);
+                    //System.out.println("After thread: is playing = " + isPlaying);
                     break;
                 case R.id.one:
                     img = (ImageView) findViewById(R.id.longsongImage);
@@ -265,7 +265,7 @@ public class NotePage extends AppCompatActivity {
     }*/
 
     public Bitmap createSubsetOfImage(int x, int y){
-        int widthOfSubset = 1200;
+        int widthOfSubset = 1800;
         Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.longsong);
         if(x + widthOfSubset > src.getWidth()){
             return Bitmap.createBitmap(src, src.getWidth() - widthOfSubset - 1 , y, widthOfSubset, src.getHeight());

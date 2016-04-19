@@ -20,31 +20,31 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private AudioRecordToFile recorder = null;
-    private Button startButton = null;
+    /*private Button startButton = null;
     private Button stopButton = null;
-    private Button playButton = null;
+    private Button playButton = null;*/
 
     //int[] note_image_resource = {R.drawable.notes1, R.drawable.notes1, R.drawable.notes1}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startButton = (Button) findViewById(R.id.button);
+        /*startButton = (Button) findViewById(R.id.button);
         stopButton = (Button) findViewById(R.id.button2);
-        playButton = (Button) findViewById(R.id.button3);
+        playButton = (Button) findViewById(R.id.button3);*/
         recorder = new AudioRecordToFile();
-        startButton.setOnClickListener(new btnClick());
+        /*startButton.setOnClickListener(new btnClick());
         stopButton.setOnClickListener(new btnClick());
         playButton.setOnClickListener(new btnClick());
         stopButton.setEnabled(false);
-        playButton.setEnabled(false);
+        playButton.setEnabled(false);*/
 
         Bluetooth bluetooth = new Bluetooth();
         bluetooth.findBT();
     }
 
 
-    class btnClick implements View.OnClickListener {
+    /*class btnClick implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-    }
+    }*/
 
     public void startChooseSongActivity(View view)
     {

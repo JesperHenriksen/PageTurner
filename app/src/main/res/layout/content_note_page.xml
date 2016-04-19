@@ -27,16 +27,21 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
         android:id="@+id/longsongImage"/>
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonUpdate"
-        android:layout_alignBottom="@+id/notepagebg"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="87dp" />
+        android:textColor="#f5f2f9"
+        android:textSize="25dp"
+        android:fontFamily="roboto"
+        android:textAllCaps="false"
+        android:background="@drawable/buttonround"
+        android:layout_above="@+id/skipbuttons"
+
+        android:layout_centerHorizontal="true"/>
     <!--
     <Button
         android:layout_width="wrap_content"
@@ -56,6 +61,7 @@
     -->
     <!--Buttons in the buttom that change where you are in the song-->
     <LinearLayout
+        android:id="@+id/skipbuttons"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
