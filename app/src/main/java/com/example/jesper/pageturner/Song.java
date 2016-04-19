@@ -10,6 +10,12 @@ public class Song {
     private static ArrayList<Song> songCollection = new ArrayList<>();
     private static ArrayList<Chord> listOfChords = new ArrayList<>();
 
+    public static int getCurrentIndex() {
+        return currentIndex;
+    }
+
+    private static int currentIndex = 0;
+
 
     public Song(int noteImageResource, String songTitle, String artistName) {
         this.setNoteImageResource(noteImageResource);
@@ -18,6 +24,83 @@ public class Song {
         songCollection.add(this);
     }
     public Song(){}
+
+    public static Chord getCurrentChord(){
+        return listOfChords.get(currentIndex);
+    }
+
+    public static void nextChord(){
+        if(listOfChords.size() - 1 > currentIndex) {
+            currentIndex++;
+        }
+    }
+
+    public static void previousChord(){
+        if(currentIndex > 0){
+            currentIndex--;
+        }
+    }
+    public static void loadSong(){
+        //first block
+        listOfChords.add(new Chord("F")); listOfChords.add(new Chord("E"));
+        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("B"));
+        listOfChords.add(new Chord("A"));
+        //second block
+        listOfChords.add(new Chord("D")); listOfChords.add(new Chord("E"));
+        listOfChords.add(new Chord("F"));
+        //third block
+        listOfChords.add(new Chord("G")); listOfChords.add(new Chord("B"));
+        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("F"));
+        //fourth block
+        listOfChords.add(new Chord("E")); listOfChords.add(new Chord("G"));
+        listOfChords.add(new Chord("F")); listOfChords.add(new Chord("E"));
+        //fifth block
+        listOfChords.add(new Chord("F")); listOfChords.add(new Chord("E"));
+        listOfChords.add(new Chord("F")); listOfChords.add(new Chord("G"));
+        listOfChords.add(new Chord("E"));
+        //sixth block
+        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("E"));
+        //seventh block
+        listOfChords.add(new Chord("D")); listOfChords.add(new Chord("C"));
+        listOfChords.add(new Chord("F")); listOfChords.add(new Chord("G"));
+        listOfChords.add(new Chord("A"));
+        //eighth block
+        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("C"));
+        listOfChords.add(new Chord("B")); listOfChords.add(new Chord("A"));
+        //ninth block
+        listOfChords.add(new Chord("E")); listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("G")); listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("G"));
+        //tenth block
+        listOfChords.add(new Chord("B")); listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("G")); listOfChords.add(new Chord("F"));
+        //eleventh block
+        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("B")); listOfChords.add(new Chord("G"));
+        listOfChords.add(new Chord("D"));
+        //twelfth block
+        listOfChords.add(new Chord("D")); listOfChords.add(new Chord("C#"));
+        listOfChords.add(new Chord("B"));
+        //thirteenth block
+        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("B"));
+        listOfChords.add(new Chord("A"));
+        //fourteenth block
+        listOfChords.add(new Chord("D")); listOfChords.add(new Chord("D"));
+        listOfChords.add(new Chord("C"));
+        //fifteenth block
+        listOfChords.add(new Chord("B")); listOfChords.add(new Chord("C"));
+        listOfChords.add(new Chord("D")); listOfChords.add(new Chord("D"));
+        listOfChords.add(new Chord("G"));
+        //sixteenth block
+        listOfChords.add(new Chord("F")); listOfChords.add(new Chord("E"));
+       /* for(Chord e: listOfChords){
+            System.out.print("chordName " + e.getChordName() + " frequency " + e.getFrequency());
+        }
+        System.out.println(" ");*/
+        //Song song = new Song(listOfChords,"Til vor lille gerning ud", "C.E.F. Weyse");
+    }
 
     public Song(ArrayList<Chord> listOfChords, String artist, String songName) {
         this.setSongTitle(songName);

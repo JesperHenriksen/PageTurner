@@ -8,6 +8,7 @@
     tools:context="com.example.jesper.pageturner.MainActivity"
     android:background="@color/lightPurple">
 
+
     <ImageView
         android:id="@+id/noteImageFrontpage"
         android:layout_width="match_parent"

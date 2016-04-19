@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         stopButton.setEnabled(false);
         playButton.setEnabled(false);
 
+        Bluetooth bluetooth = new Bluetooth();
+        bluetooth.findBT();
     }
 
 
@@ -80,68 +82,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ChooseSong.class);
         startActivity(intent);
     }
-
-
-
-    /*public Song loadSong(){
-        ArrayList<Chord> chords = new ArrayList<>();
-        //first block
-        chords.add(new Chord("F",0)); chords.add(new Chord("E", 0));
-        chords.add(new Chord("A", 0)); chords.add(new Chord("B", 0));
-        chords.add(new Chord("A", 0));
-        //second block
-        chords.add(new Chord("D", 0)); chords.add(new Chord("E", 0));
-        chords.add(new Chord("F", 0));
-        //third block
-        chords.add(new Chord("G", 0)); chords.add(new Chord("B", 0));
-        chords.add(new Chord("A", 0)); chords.add(new Chord("F", 0));
-        //fourth block
-        chords.add(new Chord("E", 0)); chords.add(new Chord("G", 0));
-        chords.add(new Chord("F", 0)); chords.add(new Chord("E", 0));
-        //fifth block
-        chords.add(new Chord("F", 0)); chords.add(new Chord("E", 0));
-        chords.add(new Chord("F", 0)); chords.add(new Chord("G", 0));
-        chords.add(new Chord("E", 0));
-        //sixth block
-        chords.add(new Chord("A", 0)); chords.add(new Chord("F", 0));
-        chords.add(new Chord("E", 0));
-        //seventh block
-        chords.add(new Chord("D", 0)); chords.add(new Chord("C", 0));
-        chords.add(new Chord("F", 0)); chords.add(new Chord("G", 0));
-        chords.add(new Chord("A", 0));
-        //eighth block
-        chords.add(new Chord("A", 0)); chords.add(new Chord("C", 0));
-        chords.add(new Chord("B", 0)); chords.add(new Chord("A", 0));
-        //ninth block
-        chords.add(new Chord("E", 0)); chords.add(new Chord("F", 0));
-        chords.add(new Chord("G", 0)); chords.add(new Chord("F", 0));
-        chords.add(new Chord("G", 0));
-        //tenth block
-        chords.add(new Chord("B", 0)); chords.add(new Chord("A", 0));
-        chords.add(new Chord("G", 0)); chords.add(new Chord("F", 0));
-        //eleventh block
-        chords.add(new Chord("A", 0)); chords.add(new Chord("A", 0));
-        chords.add(new Chord("B", 0)); chords.add(new Chord("G", 0));
-        chords.add(new Chord("D", 0));
-        //twelfth block
-        chords.add(new Chord("D", 0)); chords.add(new Chord("C#", 0));
-        chords.add(new Chord("B", 0));
-        //thirteenth block
-        chords.add(new Chord("A", 0)); chords.add(new Chord("A", 0));
-        chords.add(new Chord("A", 0)); chords.add(new Chord("B", 0));
-        chords.add(new Chord("A", 0));
-        //fourteenth block
-        chords.add(new Chord("D", 0)); chords.add(new Chord("D", 0));
-        chords.add(new Chord("C", 0));
-        //fifteenth block
-        chords.add(new Chord("B", 0)); chords.add(new Chord("C", 0));
-        chords.add(new Chord("D", 0)); chords.add(new Chord("D", 0));
-        chords.add(new Chord("G", 0));
-        //sixteenth block
-        chords.add(new Chord("F", 0)); chords.add(new Chord("E", 0));
-
-        Song song = new Song(chords,"Til vor lille gerning ud", "C.E.F. Weyse");
-        return song;
-    }*/
 
 }
