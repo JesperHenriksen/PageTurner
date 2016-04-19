@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         stopButton.setEnabled(false);
         playButton.setEnabled(false);
 
+        Bluetooth bluetooth = new Bluetooth();
+        bluetooth.findBT();
     }
 
 
