@@ -1,6 +1,8 @@
 package com.example.jesper.pageturner;
 
 
+import android.widget.ImageView;
+
 import java.util.ArrayList;
 
 public class EPCP {
@@ -91,7 +93,12 @@ public class EPCP {
         System.out.println("Tone = " +getTone()+ " expected = " + Song.getCurrentChord().getFrequency());
         if(Chord.isEqual(getFundamentalFrequency(getTone()), Song.getCurrentChord().getFrequency())) {
             Song.nextChord();
-
+            if(NotePage.isNextNote()){
+                NotePage.setIsNextNote(false);
+            }
+            else {
+                NotePage.setIsNextNote(true);
+            }
         }
     }
 
