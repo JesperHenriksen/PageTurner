@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.content.res.ResourcesCompat;
@@ -221,7 +222,7 @@ public class NotePage extends AppCompatActivity {
                     while (isPlaying && !isPedalPressed) {
                         //System.out.println("pedals not pressed");
                         try {
-                            moveImageThread.sleep(200);
+                            moveImageThread.sleep(50);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -241,6 +242,10 @@ public class NotePage extends AppCompatActivity {
                                     ImageView chordView = (ImageView) findViewById(R.id.gKey);
                                     chordView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notefrontpage, null));
                                 }
+                                LinearLayout skipbuttons = (LinearLayout) findViewById(R.id.skipbuttons);
+                                ImageView marker = (ImageView) findViewById(R.id.marker);
+                                marker.setTranslationX(Song.getCurrentIndex() *
+                                        (skipbuttons.getWidth() / Song.getNumberOfTotalChords()));
                             }
                         });
                         if(Bluetooth.getData() > 3){
@@ -378,14 +383,10 @@ public class NotePage extends AppCompatActivity {
         TextView buttonNext = (TextView) view.getChildAt(index + 1);
         buttonNext.setTextSize(40);
     }
-    public Bitmap moveMarker(){
-        Bitmap marker = BitmapFactory.decodeResource(getResources(), R.drawable.marker);
-        LinearLayout skipbuttons = (LinearLayout) findViewById(R.id.skipbuttons);
+    /*public void moveMarker(){
         int x = Song.getCurrentIndex() *  (skipbuttons.getWidth() / Song.getNumberOfTotalChords()) + skipbuttons.getLeft();
-        int y = skipbuttons.getTop();
         int height = marker.getHeight();
         int width = marker.getWidth();
-        return marker.createBitmap(marker, x, y, width, height);
-    }
+    }*/
 
 }

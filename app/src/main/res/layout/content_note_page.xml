@@ -216,6 +216,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:src="@drawable/marker"
         android:layout_alignBottom="@id/notepagebg"
         android:layout_alignLeft="@+id/skipbuttons"
         android:id="@+id/marker"/>

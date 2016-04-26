@@ -106,7 +106,7 @@ public class EPCP {
     }
 
     private int getFundamentalFrequency(int tone){
-        if(tone == 0){
+        if(tone == 0 || tone < 100){
             return 0;
         }
         int result = tone;
