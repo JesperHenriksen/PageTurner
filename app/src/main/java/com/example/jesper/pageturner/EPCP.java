@@ -1,6 +1,9 @@
 package com.example.jesper.pageturner;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import android.widget.ImageView;
 
 import java.util.ArrayList;

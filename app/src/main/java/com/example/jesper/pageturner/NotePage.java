@@ -378,5 +378,14 @@ public class NotePage extends AppCompatActivity {
         TextView buttonNext = (TextView) view.getChildAt(index + 1);
         buttonNext.setTextSize(40);
     }
+    public Bitmap moveMarker(){
+        Bitmap marker = BitmapFactory.decodeResource(getResources(), R.drawable.marker);
+        LinearLayout skipbuttons = (LinearLayout) findViewById(R.id.skipbuttons);
+        int x = Song.getCurrentIndex() *  (skipbuttons.getWidth() / Song.getNumberOfTotalChords()) + skipbuttons.getLeft();
+        int y = skipbuttons.getTop();
+        int height = marker.getHeight();
+        int width = marker.getWidth();
+        return marker.createBitmap(marker, x, y, width, height);
+    }
 
 }
