@@ -37,7 +37,10 @@ public class Song {
     public Song(){}
 
     public static Chord getCurrentChord(){
-        return listOfChords.get(currentIndex);
+        if(listOfChords.size() < currentIndex)
+            return listOfChords.get(currentIndex);
+        else
+            return listOfChords.get(listOfChords.size()-1);
     }
 
     public static void nextChord(){

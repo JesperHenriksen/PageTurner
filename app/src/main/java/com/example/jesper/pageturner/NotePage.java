@@ -3,7 +3,10 @@ package com.example.jesper.pageturner;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -20,6 +23,16 @@ public class NotePage extends AppCompatActivity {
     private boolean isFirstRun = true;
     private Thread moveImageThread = null;
     private Thread pedalThread = null;
+
+    public static boolean isNextNote() {
+        return isNextNote;
+    }
+
+    public static void setIsNextNote(boolean isNextNotee) {
+        isNextNote = isNextNotee;
+    }
+
+    protected static boolean isNextNote = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +121,10 @@ public class NotePage extends AppCompatActivity {
                 return true;
             case R.id.resetSongToolbar:
                 Song.resetSong();
+                moveImageThread = null;
+                if(recorder != null) {
+                    recorder.stopRecording();
+                }
                 Intent resetSong = new Intent(this, NotePage.class);
                 resetSong.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(resetSong);
@@ -125,7 +142,6 @@ public class NotePage extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     class btnClick implements View.OnClickListener {
@@ -205,20 +221,28 @@ public class NotePage extends AppCompatActivity {
                     while (isPlaying && !isPedalPressed) {
                         //System.out.println("pedals not pressed");
                         try {
-                            moveImageThread.sleep(250);
+                            moveImageThread.sleep(200);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        if(Song.getCurrentIndex() % 3 == 0) {
-                            x = createSubsetOfImage(Song.getCurrentIndex(), 0);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(Song.getCurrentIndex() % 3 == 0) {
+                                    x = createSubsetOfImage(Song.getCurrentIndex(), 0);
                                     ImageView img = (ImageView) findViewById(R.id.longsongImage);
                                     img.setImageBitmap(x);
                                 }
-                            });
-                        }
+                                if(isNextNote()){
+                                    ImageView chordView = (ImageView) findViewById(R.id.gKey);
+                                    chordView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notelightup, null));
+                                }
+                                else {
+                                    ImageView chordView = (ImageView) findViewById(R.id.gKey);
+                                    chordView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notefrontpage, null));
+                                }
+                            }
+                        });
                         if(Bluetooth.getData() > 3){
                             System.out.println("pedals Pressed");
                             isPedalPressed = true;
@@ -260,8 +284,6 @@ public class NotePage extends AppCompatActivity {
                     //System.out.println("After thread: is playing = " + isPlaying);
                     break;
                 case R.id.one:
-                    LinearLayout chordView = (LinearLayout) findViewById(R.id.chordScroller);
-                    changeColorOfLinearLayoutChild(0, chordView);
                     img = (ImageView) findViewById(R.id.longsongImage);
                     x = createSubsetOfImage(0);
                     img.setImageBitmap(x);
@@ -343,6 +365,10 @@ public class NotePage extends AppCompatActivity {
             return Bitmap.createBitmap(src, src.getWidth() - widthOfSubset - 1 , 0, widthOfSubset, src.getHeight());
         }
         return Bitmap.createBitmap(src, x, 0, widthOfSubset, src.getHeight());
+    }
+
+    public void changeImage(){
+
     }
 
     private void changeColorOfLinearLayoutChild(int index, LinearLayout view){
