@@ -1,50 +1,44 @@
 package com.example.jesper.pageturner;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.media.AudioFormat;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    private AudioRecorder recorder = null;
-    private Button startButton = null;
+    private AudioRecordToFile recorder = null;
+    /*private Button startButton = null;
     private Button stopButton = null;
-    private Button playButton = null;
+    private Button playButton = null;*/
 
     //int[] note_image_resource = {R.drawable.notes1, R.drawable.notes1, R.drawable.notes1}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startButton = (Button) findViewById(R.id.button);
+        /*startButton = (Button) findViewById(R.id.button);
         stopButton = (Button) findViewById(R.id.button2);
-        playButton = (Button) findViewById(R.id.button3);
-        recorder = new AudioRecorder();
-        startButton.setOnClickListener(new btnClick());
+        playButton = (Button) findViewById(R.id.button3);*/
+        recorder = new AudioRecordToFile();
+        /*startButton.setOnClickListener(new btnClick());
         stopButton.setOnClickListener(new btnClick());
         playButton.setOnClickListener(new btnClick());
         stopButton.setEnabled(false);
-        playButton.setEnabled(false);
+        playButton.setEnabled(false);*/
 
-        Bluetooth bluetooth = new Bluetooth();
-        bluetooth.findBT();
+        /*Bluetooth.startBluetooth();
+        try {
+            Bluetooth.getArduinoData();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }*/
     }
 
 
-    class btnClick implements View.OnClickListener {
+    /*class btnClick implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
@@ -75,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-    }
+    }*/
 
     public void startChooseSongActivity(View view)
     {

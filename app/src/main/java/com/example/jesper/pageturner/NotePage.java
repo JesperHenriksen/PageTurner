@@ -19,8 +19,7 @@ public class NotePage extends AppCompatActivity {
     private boolean isPlaying = false;
     private boolean isFirstRun = true;
     private Thread moveImageThread = null;
-    private Thread forwardPedalThread = null;
-    private Thread backwardPedalThread = null;
+    private Thread pedalThread = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,7 @@ public class NotePage extends AppCompatActivity {
         setContentView(R.layout.activity_note_page);
 
         Button button = (Button) findViewById(R.id.buttonUpdate);
-        button.setText("Start recording");
+        button.setText("Start");
         Song.loadSong();
         Toolbar myToolBar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolBar);
@@ -75,11 +74,8 @@ public class NotePage extends AppCompatActivity {
         if (moveImageThread != null) {
             moveImageThread.notify();
         }
-        /*if(backwardPedalThread != null){
-            backwardPedalThread.notify();
-        }
-        if(forwardPedalThread != null) {
-            forwardPedalThread.notify();
+        /*if(pedalThread != null){
+            pedalThread.notify();
         }*/
     }
 
@@ -88,8 +84,7 @@ public class NotePage extends AppCompatActivity {
         super.onDestroy();
         // Another activity is taking focus (this activity is about to be "paused").
         moveImageThread = null;
-        //backwardPedalThread = null;
-        //forwardPedalThread = null;
+        //pedalThread = null;
     }
 
     @Override
@@ -98,12 +93,9 @@ public class NotePage extends AppCompatActivity {
         // Another activity is taking focus (this activity is about to be "paused").
         if (moveImageThread != null) {
             moveImageThread = null;
-        }
-        /*if(backwardPedalThread != null){
-            backwardPedalThread.wait();
-        }
-        if(forwardPedalThread != null) {
-            forwardPedalThread.wait();
+        }/*
+        if(pedalThread != null) {
+            pedalThread.wait();
         }*/
     }
 
@@ -115,6 +107,7 @@ public class NotePage extends AppCompatActivity {
                 startActivity(back);
                 return true;
             case R.id.resetSongToolbar:
+                Song.resetSong();
                 Intent resetSong = new Intent(this, NotePage.class);
                 resetSong.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(resetSong);
@@ -136,6 +129,7 @@ public class NotePage extends AppCompatActivity {
     }
 
     class btnClick implements View.OnClickListener {
+        private boolean isPedalPressed = false;
         private ImageView img;
         private int getMovementValue (int i) {
             Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.longsong);
@@ -147,11 +141,95 @@ public class NotePage extends AppCompatActivity {
             while(isFirstRun) {
                 //System.out.println("Listening for tone " + EPCP.getFrequency());
                 if(EPCP.getFrequency() > 80 && EPCP.getFrequency() < 660){
-                    System.out.println("Listening for tone complete " + EPCP.getFrequency());
+                    //System.out.println("Listening for tone complete " + EPCP.getFrequency());
                     isFirstRun = false;
                     return;
                 }
             }
+        }
+
+        private void pedalsPressed(){
+            pedalThread = new Thread(new Runnable() {
+                public void run() {
+                    int currentData = Bluetooth.getData();
+                    if(currentData == 4) {
+                        //System.out.println("pedals " + currentData);
+                        while (currentData == 4 && isPedalPressed) {//scroll backward
+                            //System.out.println("pedals pressed backward");
+                            Song.previousChord();
+                            x = createSubsetOfImage(Song.getCurrentIndex(), 0);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ImageView img = (ImageView) findViewById(R.id.longsongImage);
+                                    img.setImageBitmap(x);
+                                }
+                            });
+                            currentData = Bluetooth.getData();
+                        }
+                        //System.out.println("out pedals " + currentData);
+                    }
+                    else {
+                        //System.out.println("pedals " + currentData);
+                        while (currentData == 5 && isPedalPressed) { //scroll forward
+                            //System.out.println("pedals pressed forward");
+                            Song.nextChord();
+                            x = createSubsetOfImage(Song.getCurrentIndex(), 0);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ImageView img = (ImageView) findViewById(R.id.longsongImage);
+                                    img.setImageBitmap(x);
+                                }
+                            });
+                            currentData = Bluetooth.getData();
+                        }
+                        //System.out.println("out pedals " + currentData);
+                    }
+                    pedalsReleased();
+                }
+            }, "Moves image when pedals are pressed");
+            pedalThread.start();
+        }
+
+        private void pedalsReleased(){
+            System.out.println("Pedals released");
+            isPedalPressed = false;
+            pedalThread = null;
+            imageMovement();
+        }
+
+        private void imageMovement(){
+            moveImageThread = new Thread(new Runnable() {
+                public void run() {
+                    while (isPlaying && !isPedalPressed) {
+                        //System.out.println("pedals not pressed");
+                        try {
+                            moveImageThread.sleep(250);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        if(Song.getCurrentIndex() % 3 == 0) {
+                            x = createSubsetOfImage(Song.getCurrentIndex(), 0);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ImageView img = (ImageView) findViewById(R.id.longsongImage);
+                                    img.setImageBitmap(x);
+                                }
+                            });
+                        }
+                        if(Bluetooth.getData() > 3){
+                            System.out.println("pedals Pressed");
+                            isPedalPressed = true;
+                            pedalsPressed();
+                            moveImageThread = null;
+                        }
+                    }
+
+                }
+            }, "Moves image over time");
+            moveImageThread.start();
         }
 
         @Override
@@ -159,89 +237,75 @@ public class NotePage extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.buttonUpdate:
                     //this.listenForTone();
-                    System.out.println("started: is playing = " + isPlaying);
+                    //System.out.println("started: is playing = " + isPlaying);
                     if(isPlaying)
                         isPlaying = false;
                     else
                         isPlaying = true;
-                    System.out.println("before thread: is playing = " + isPlaying);
+                    //System.out.println("before thread: is playing = " + isPlaying);
                     if (isPlaying) {
                         Button button = (Button) findViewById(v.getId());
-                        button.setText("Stop recording");
+                        button.setText("Stop");
                         recorder = new AudioRecorder();
                         recorder.startRecording();
-                        moveImageThread = new Thread(new Runnable() {
-                            public void run() {
-                                while (isPlaying) {
-                                    try {
-                                        moveImageThread.sleep(250);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                    if(Song.getCurrentIndex() % 3 == 0) {
-                                        x = createSubsetOfImage(Song.getCurrentIndex()*100, 0);
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ImageView img = (ImageView) findViewById(R.id.longsongImage);
-                                                img.setImageBitmap(x);
-                                            }
-                                        });
-                                    }
-                                }
-
-                            }
-                        }, "Moves image over time");
-                        moveImageThread.start();
+                        imageMovement();
                     }
                     else if(!isPlaying){
-                        System.out.println("stopped thread: isPlaying = " + isPlaying);
+                        //System.out.println("stopped thread: isPlaying = " + isPlaying);
                         Button button = (Button) findViewById(v.getId());
-                        button.setText("Start recording");
+                        button.setText("Start");
                         recorder.stopRecording();
                         moveImageThread = null;
                     }
-                    System.out.println("After thread: is playing = " + isPlaying);
+                    //System.out.println("After thread: is playing = " + isPlaying);
                     break;
                 case R.id.one:
                     img = (ImageView) findViewById(R.id.longsongImage);
-                    x = createSubsetOfImage(0, 0);
+                    x = createSubsetOfImage(0);
                     img.setImageBitmap(x);
+                    Song.setCurrentIndex(0);
                     break;
                 case R.id.two:
                     img = (ImageView) findViewById(R.id.longsongImage);
-                    x = createSubsetOfImage(this.getMovementValue(1), 0);
+                    x = createSubsetOfImage(this.getMovementValue(1));
                     img.setImageBitmap(x);
+                    Song.setCurrentIndex(Song.getNumberOfTotalChords() * 2/8);
                     break;
                 case R.id.three:
                     img = (ImageView) findViewById(R.id.longsongImage);
-                    x = createSubsetOfImage(this.getMovementValue(2), 0);
+                    x = createSubsetOfImage(this.getMovementValue(2));
                     img.setImageBitmap(x);
+                    Song.setCurrentIndex(Song.getNumberOfTotalChords() * 3/8);
                     break;
                 case R.id.four:
                     img = (ImageView) findViewById(R.id.longsongImage);
-                    x = createSubsetOfImage(this.getMovementValue(3), 0);
+                    x = createSubsetOfImage(this.getMovementValue(3));
                     img.setImageBitmap(x);
+                    Song.setCurrentIndex(Song.getNumberOfTotalChords() * 4/8);
                     break;
                 case R.id.five:
                     ImageView img = (ImageView) findViewById(R.id.longsongImage);
-                    x = createSubsetOfImage(this.getMovementValue(4), 0);
+                    x = createSubsetOfImage(this.getMovementValue(4));
                     img.setImageBitmap(x);
+                    Song.setCurrentIndex(Song.getNumberOfTotalChords() * 5 / 8);
                     break;
                 case R.id.six:
                     img = (ImageView) findViewById(R.id.longsongImage);
-                    x = createSubsetOfImage(this.getMovementValue(5), 0);
+                    x = createSubsetOfImage(this.getMovementValue(5));
                     img.setImageBitmap(x);
+                    Song.setCurrentIndex(Song.getNumberOfTotalChords() * 6 / 8);
                     break;
                 case R.id.seven:
                     img = (ImageView) findViewById(R.id.longsongImage);
-                    x = createSubsetOfImage(this.getMovementValue(6), 0);
+                    x = createSubsetOfImage(this.getMovementValue(6));
                     img.setImageBitmap(x);
+                    Song.setCurrentIndex(Song.getNumberOfTotalChords() * 7 / 8);
                     break;
                 case R.id.eight:
                     img = (ImageView) findViewById(R.id.longsongImage);
-                    x = createSubsetOfImage(this.getMovementValue(7), 0);
+                    x = createSubsetOfImage(this.getMovementValue(7));
                     img.setImageBitmap(x);
+                    Song.setCurrentIndex(Song.getNumberOfTotalChords() * 8 / 8);
                     break;
                 default:
                     break;
@@ -265,11 +329,17 @@ public class NotePage extends AppCompatActivity {
     }*/
 
     public Bitmap createSubsetOfImage(int x, int y){
-        int widthOfSubset = 1200;
+        int widthOfSubset = 1800;
+        Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.longsong);
+        return Bitmap.createBitmap(src, (x) * ((src.getWidth()-widthOfSubset)/(Song.getNumberOfTotalChords()-1)), y, widthOfSubset, src.getHeight());
+    }
+
+    public Bitmap createSubsetOfImage(int x){
+        int widthOfSubset = 1800;
         Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.longsong);
         if(x + widthOfSubset > src.getWidth()){
-            return Bitmap.createBitmap(src, src.getWidth() - widthOfSubset - 1 , y, widthOfSubset, src.getHeight());
+            return Bitmap.createBitmap(src, src.getWidth() - widthOfSubset - 1 , 0, widthOfSubset, src.getHeight());
         }
-        return Bitmap.createBitmap(src, x, y, widthOfSubset, src.getHeight());
+        return Bitmap.createBitmap(src, x, 0, widthOfSubset, src.getHeight());
     }
 }

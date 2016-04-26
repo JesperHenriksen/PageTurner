@@ -11,14 +11,12 @@
 
     <ImageView
         android:id="@+id/noteImageFrontpage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/notefrontpage"
-        android:scaleType="center"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" />
-
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+    <!-- test recording buttons
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,13 +43,14 @@
         android:layout_below="@+id/button2"
         android:layout_alignLeft="@+id/button2"
         android:layout_alignStart="@+id/button2" />
+    -->
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Choose a Song"
         android:id="@+id/choosesongbutton"
-        android:layout_marginBottom="62dp"
+        android:layout_marginBottom="20dp"
         android:textColor="#f5f2f9"
         android:textSize="30dp"
         android:fontFamily="roboto"
