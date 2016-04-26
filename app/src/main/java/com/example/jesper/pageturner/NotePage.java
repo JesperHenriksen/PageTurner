@@ -260,6 +260,8 @@ public class NotePage extends AppCompatActivity {
                     //System.out.println("After thread: is playing = " + isPlaying);
                     break;
                 case R.id.one:
+                    LinearLayout chordView = (LinearLayout) findViewById(R.id.chordScroller);
+                    changeColorOfLinearLayoutChild(0, chordView);
                     img = (ImageView) findViewById(R.id.longsongImage);
                     x = createSubsetOfImage(0);
                     img.setImageBitmap(x);
@@ -269,19 +271,19 @@ public class NotePage extends AppCompatActivity {
                     img = (ImageView) findViewById(R.id.longsongImage);
                     x = createSubsetOfImage(this.getMovementValue(1));
                     img.setImageBitmap(x);
-                    Song.setCurrentIndex(Song.getNumberOfTotalChords() * 2/8);
+                    Song.setCurrentIndex(Song.getNumberOfTotalChords() * 2 / 8);
                     break;
                 case R.id.three:
                     img = (ImageView) findViewById(R.id.longsongImage);
                     x = createSubsetOfImage(this.getMovementValue(2));
                     img.setImageBitmap(x);
-                    Song.setCurrentIndex(Song.getNumberOfTotalChords() * 3/8);
+                    Song.setCurrentIndex(Song.getNumberOfTotalChords() * 3 / 8);
                     break;
                 case R.id.four:
                     img = (ImageView) findViewById(R.id.longsongImage);
                     x = createSubsetOfImage(this.getMovementValue(3));
                     img.setImageBitmap(x);
-                    Song.setCurrentIndex(Song.getNumberOfTotalChords() * 4/8);
+                    Song.setCurrentIndex(Song.getNumberOfTotalChords() * 4 / 8);
                     break;
                 case R.id.five:
                     ImageView img = (ImageView) findViewById(R.id.longsongImage);
@@ -342,4 +344,13 @@ public class NotePage extends AppCompatActivity {
         }
         return Bitmap.createBitmap(src, x, 0, widthOfSubset, src.getHeight());
     }
+
+    private void changeColorOfLinearLayoutChild(int index, LinearLayout view){
+        TextView button = (TextView) view.getChildAt(index);
+        button.setTextColor(0xFF00FF00);
+        button.setTextSize(20);
+        TextView buttonNext = (TextView) view.getChildAt(index + 1);
+        buttonNext.setTextSize(40);
+    }
+
 }
