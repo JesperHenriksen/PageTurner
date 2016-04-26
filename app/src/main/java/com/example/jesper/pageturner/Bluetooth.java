@@ -28,7 +28,7 @@ public class Bluetooth
         return data;
     }
 
-    public static void setData(int data) {
+    private static void setData(int data) {
         Bluetooth.data = data;
     }
 

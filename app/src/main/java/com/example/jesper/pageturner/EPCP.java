@@ -74,7 +74,6 @@ public class EPCP {
                 //System.out.print("w " + w + " ");
                 int indexOfFFT = (int) (Math.floor(w/2/Math.PI*N)); //Converts the frequency to index of fft
                 //System.out.print("index " + indexOfFFT);
-                //this is where the error is:
                 resultSummation += Math.pow((fft[indexOfFFT].abs())/SAMPLING_MILLISECONDS, 2); // sun up the different absolute fft values at given index squared ( sum up power spectrums)
                 //System.out.print(" fft at index " + fft[indexOfFFT] + " fft abs = " + fft[indexOfFFT].abs());
             }
@@ -89,7 +88,7 @@ public class EPCP {
         setFrequency(getFreqencyOfIndex(argMax));
         //System.out.println(" frequency = " + getFrequency());
         setTone(getMedian());
-        System.out.println("Tone = " +getTone()+ " frequency median = " + frequencyMedian.toString());
+        System.out.println("Tone = " +getTone()+ " expected = " + Song.getCurrentChord().getFrequency());
         if(Chord.isEqual(getFundamentalFrequency(getTone()), Song.getCurrentChord().getFrequency())) {
             Song.nextChord();
         }
@@ -97,16 +96,17 @@ public class EPCP {
 
     private int getFundamentalFrequency(int tone){
         if(tone == 0){
-         return 0;
+            return 0;
         }
-        int result = 0;
-        if(tone > 220){
-            return (tone % 220);
+        int result = tone;
+        if (result > 440) {
+            result = (tone / 2);
         }
-        if(tone < 220){
+
+        if(result < 220){
             result = tone * 2;
-            getFundamentalFrequency(result);
         }
+
         return result;
     }
 

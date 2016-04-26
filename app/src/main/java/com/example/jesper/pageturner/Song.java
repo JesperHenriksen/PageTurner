@@ -14,6 +14,17 @@ public class Song {
         return currentIndex;
     }
 
+    public static void setCurrentIndex(int currentIndex) {
+        if(currentIndex > listOfChords.size()){
+            Song.currentIndex = listOfChords.size() - 1;
+        }
+        else
+            Song.currentIndex = currentIndex;
+    }
+    public static int getNumberOfTotalChords(){
+        return listOfChords.size();
+    }
+
     private static int currentIndex = 0;
 
 
@@ -151,5 +162,9 @@ public class Song {
 
     public ArrayList<Song> getList() {
         return songCollection;
+    }
+
+    public static void resetSong() {
+        currentIndex = 0;
     }
 }

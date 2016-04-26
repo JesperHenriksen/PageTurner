@@ -11,7 +11,7 @@ public class Chord {
     }
 
     public static boolean isEqual(int e, int i){
-        int range = 20;
+        int range = 10;
         if(e + range > i && e - range < i)
             return true;
         else
