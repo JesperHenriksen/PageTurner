@@ -59,6 +59,49 @@
         android:onClick="testTone"
         android:layout_above="@+id/buttonTestRecord" />
     -->
+
+    <!--Feedback on sound recognizition-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_alignBottom="@+id/longsongImage"
+        android:clickable="false"
+        android:layout_centerHorizontal="true">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/firstElement"
+            android:text="a"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/secElement"
+            android:text="b"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/thirdElement"
+            android:text="c"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/fourthElement"
+            android:text="d"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/fifthElement"
+            android:text="e"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/sixthElement"
+            android:text="f"/>
+
+    </LinearLayout>
+
+
     <!--Buttons in the buttom that change where you are in the song-->
     <LinearLayout
         android:id="@+id/skipbuttons"
