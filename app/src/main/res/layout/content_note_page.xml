@@ -30,17 +30,16 @@
         android:id="@+id/longsongImage"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:id="@+id/buttonUpdate"
         android:textColor="#f5f2f9"
-        android:textSize="25dp"
+        android:textSize="40dp"
         android:fontFamily="roboto"
         android:textAllCaps="false"
         android:layout_marginBottom="20dp"
         android:background="@drawable/buttonround"
         android:layout_above="@+id/skipbuttons"
-
         android:layout_centerHorizontal="true"/>
     <!--
     <Button
@@ -60,20 +59,30 @@
         android:layout_above="@+id/buttonTestRecord" />
     -->
 
-    <!--Feedback on sound recognizition-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/gKey"
+        android:layout_below="@+id/longsongImage"
+        android:clickable="false"
+        android:layout_centerHorizontal="true"/>
+    <!--Feedback on sound recognizition
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_alignBottom="@+id/longsongImage"
+        android:layout_marginTop="20dp"
+        android:id="@+id/chordScroller"
+        android:layout_below="@+id/longsongImage"
         android:clickable="false"
         android:layout_centerHorizontal="true">
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/firstElement"
+            android:textSize="40dp"
             android:text="a"/>
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/secElement"
@@ -98,15 +107,13 @@
             android:layout_height="match_parent"
             android:id="@+id/sixthElement"
             android:text="f"/>
-
-    </LinearLayout>
-
+    </LinearLayout> -->
 
     <!--Buttons in the buttom that change where you are in the song-->
     <LinearLayout
         android:id="@+id/skipbuttons"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="65dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="#d7cfe3"
@@ -120,7 +127,7 @@
             android:layout_weight="0.125"
             android:textColor="@color/bgColor"
             android:layout_alignBottom="@+id/notepagebg"
-            android:textSize="22dp"/>
+            android:textSize="40dp"/>
 
         <Button
             android:id="@+id/two"
@@ -132,7 +139,7 @@
             android:textColor="@color/bgColor"
             android:layout_alignBottom="@+id/notepagebg"
             android:layout_toRightOf="@+id/one"
-            android:textSize="22dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/three"
@@ -144,7 +151,7 @@
             android:textColor="@color/bgColor"
             android:layout_alignBottom="@+id/notepagebg"
             android:layout_toRightOf="@+id/two"
-            android:textSize="22dp"/>
+            android:textSize="40dp"/>
         <Button
             android:id="@+id/four"
             android:layout_width="wrap_content"
@@ -155,7 +162,7 @@
             android:layout_alignBottom="@+id/notepagebg"
             android:layout_weight="0.125"
             android:layout_toRightOf="@+id/three"
-            android:textSize="22dp"/>
+            android:textSize="40dp"/>
 
         <Button
             android:id="@+id/five"
@@ -167,7 +174,7 @@
             android:layout_alignBottom="@+id/notepagebg"
             android:layout_weight="0.125"
             android:layout_toRightOf="@+id/four"
-            android:textSize="22dp"/>
+            android:textSize="40dp"/>
 
         <Button
             android:id="@+id/six"
@@ -179,7 +186,7 @@
             android:layout_alignBottom="@+id/notepagebg"
             android:layout_weight="0.125"
             android:layout_toRightOf="@+id/five"
-            android:textSize="22dp"/>
+            android:textSize="40dp"/>
 
         <Button
             android:id="@+id/seven"
@@ -191,7 +198,7 @@
             android:layout_alignBottom="@+id/notepagebg"
             android:layout_weight="0.125"
             android:layout_toRightOf="@+id/six"
-            android:textSize="22dp" />
+            android:textSize="40dp" />
         <Button
             android:id="@+id/eight"
             android:layout_width="wrap_content"
@@ -202,7 +209,7 @@
             android:layout_alignBottom="@+id/notepagebg"
             android:layout_weight="0.125"
             android:layout_toRightOf="@+id/seven"
-            android:textSize="22dp" />
+            android:textSize="40dp" />
     </LinearLayout>
 
 </RelativeLayout>
