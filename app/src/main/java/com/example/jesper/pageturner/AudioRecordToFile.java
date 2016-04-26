@@ -19,7 +19,7 @@ public class AudioRecordToFile {
         File save = new File(OUTPUT_FILE_PATH, "recording2.3pg");
 
         recorder = new MediaRecorder();
-        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        recorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         recorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
         recorder.setOutputFile(OUTPUT_FILE_PATH);

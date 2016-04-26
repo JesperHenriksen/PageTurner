@@ -6,7 +6,7 @@ import java.util.List;
 public class ExistingChords {
     private static ArrayList<Chord> existingChords = new ArrayList<>();
 
-    public ExistingChords(){
+    /*public ExistingChords(){
         Chord c = new Chord("C", 77);
         addItemToList(c);
         Chord cmol = new Chord("C#", 77);
@@ -57,7 +57,7 @@ public class ExistingChords {
         Chord bMinor = new Chord("b", 77);
         addItemToList(bMinor);
 
-    }
+    }*/
 
     public List<Chord> getExistingChordList(){
         return existingChords;
