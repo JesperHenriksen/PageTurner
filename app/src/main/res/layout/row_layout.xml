@@ -19,7 +19,7 @@
 
     <!--Song title-->
     <TextView
-        android:id="@+id/song_title"
+        android:id="@+id/songTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/note_image"
@@ -32,7 +32,7 @@
 
     <!--Artist name-->
     <TextView
-        android:id="@+id/artist_name"
+        android:id="@+id/artistName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/purple"
@@ -41,7 +41,7 @@
         android:textSize="30dp"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
-        android:layout_below="@+id/song_title"
+        android:layout_below="@+id/songTitle"
         android:layout_toRightOf="@+id/note_image" />
 
 

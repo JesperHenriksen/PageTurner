@@ -18,10 +18,8 @@ import java.util.List;
 
 public class ChooseSong extends Activity {
     //List of song names
-    ListView listSongNames;
-    String[] song_titles;
-    String[] artists;
-    SongAdapter adapter;
+    private ListView listSongNames;
+    private SongAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +27,6 @@ public class ChooseSong extends Activity {
         setContentView(R.layout.activity_choose_song);
         loadSongs();
         listSongNames = (ListView) findViewById(R.id.songList);
-        artists = getResources().getStringArray(R.array.artists);
-        song_titles = getResources().getStringArray(R.array.song_titles);
         adapter = new SongAdapter(this, R.layout.row_layout);
         listSongNames.setAdapter(adapter);
 
@@ -42,9 +38,6 @@ public class ChooseSong extends Activity {
                 new AdapterView.OnItemClickListener(){
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                        String aSong = String.valueOf(parent.getItemAtPosition(position));
-                        //Toast.makeText(ChooseSong.this, aSong, Toast.LENGTH_LONG).show();
-
                         Intent intent = new Intent(ChooseSong.this, NotePage.class);
                         startActivity(intent);
                     }
