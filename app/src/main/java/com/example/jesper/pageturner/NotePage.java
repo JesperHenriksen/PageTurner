@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.*;
 
@@ -25,7 +26,7 @@ public class NotePage extends AppCompatActivity {
     private Thread moveImageThread = null;
     private Thread pedalThread = null;
 
-    public static boolean isNextNote() {
+    /*public static boolean isNextNote() {
         return isNextNote;
     }
 
@@ -33,7 +34,7 @@ public class NotePage extends AppCompatActivity {
         isNextNote = isNextNotee;
     }
 
-    protected static boolean isNextNote = false;
+    protected static boolean isNextNote = false;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,47 @@ public class NotePage extends AppCompatActivity {
 
         Button eight = (Button) findViewById(R.id.eight);
         eight.setOnClickListener(new btnClick());
-    }
+
+        final ImageView backwardButton = (ImageView) findViewById(R.id.pushforward);
+        Button backward = (Button) findViewById(R.id.eight);
+        backward.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        Song.nextChord();
+                        backwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.pusheddownone, null));
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        backwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notpushedone, null));
+                        return true;
+                    case MotionEvent.ACTION_CANCEL:
+                        backwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notpushedone, null));
+                        return true;
+                }
+                return false;
+            }
+        });
+        final ImageView forwardButton = (ImageView) findViewById(R.id.pushforward);
+        Button forward = (Button) findViewById(R.id.eight);
+        forward.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        Song.previousChord();
+                        forwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.pusheddowntwo, null));
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        forwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notpushedtwo, null));
+                        return true;
+                    case MotionEvent.ACTION_CANCEL:
+                        forwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notpushedtwo, null));
+                        return true;
+                }
+                return false;
+            }
+        });    }
 
     @Override
     protected void onResume() {
@@ -222,7 +263,7 @@ public class NotePage extends AppCompatActivity {
                     while (isPlaying && !isPedalPressed) {
                         //System.out.println("pedals not pressed");
                         try {
-                            moveImageThread.sleep(50);
+                            moveImageThread.sleep(100);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -234,18 +275,18 @@ public class NotePage extends AppCompatActivity {
                                     ImageView img = (ImageView) findViewById(R.id.longsongImage);
                                     img.setImageBitmap(x);
                                 }
-                                if(isNextNote()){
+                                LinearLayout skipbuttons = (LinearLayout) findViewById(R.id.skipbuttons);
+                                View marker = (View) findViewById(R.id.marker);
+                                marker.setTranslationX(Song.getCurrentIndex() *
+                                        (skipbuttons.getWidth() / Song.getNumberOfTotalChords()));
+                                /*if(isNextNote()){
                                     ImageView chordView = (ImageView) findViewById(R.id.gKey);
                                     chordView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notelightup, null));
                                 }
                                 else {
                                     ImageView chordView = (ImageView) findViewById(R.id.gKey);
                                     chordView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notefrontpage, null));
-                                }
-                                LinearLayout skipbuttons = (LinearLayout) findViewById(R.id.skipbuttons);
-                                ImageView marker = (ImageView) findViewById(R.id.marker);
-                                marker.setTranslationX(Song.getCurrentIndex() *
-                                        (skipbuttons.getWidth() / Song.getNumberOfTotalChords()));
+                                }*/
                             }
                         });
                         if(Bluetooth.getData() > 3){
@@ -267,10 +308,16 @@ public class NotePage extends AppCompatActivity {
                 case R.id.buttonUpdate:
                     //this.listenForTone();
                     //System.out.println("started: is playing = " + isPlaying);
-                    if(isPlaying)
+                    if(isPlaying) {
                         isPlaying = false;
-                    else
+                        View marker = findViewById(R.id.marker);
+                        marker.setVisibility(View.INVISIBLE);
+                    }
+                    else {
                         isPlaying = true;
+                        View marker = findViewById(R.id.marker);
+                        marker.setVisibility(View.VISIBLE);
+                    }
                     //System.out.println("before thread: is playing = " + isPlaying);
                     if (isPlaying) {
                         Button button = (Button) findViewById(v.getId());
@@ -336,6 +383,10 @@ public class NotePage extends AppCompatActivity {
                     img.setImageBitmap(x);
                     Song.setCurrentIndex(Song.getNumberOfTotalChords() * 8 / 8);
                     break;
+                case R.id.pushbackward:
+                    break;
+                case R.id.pushforward:
+                    break;
                 default:
                     break;
             }
@@ -372,11 +423,7 @@ public class NotePage extends AppCompatActivity {
         return Bitmap.createBitmap(src, x, 0, widthOfSubset, src.getHeight());
     }
 
-    public void changeImage(){
-
-    }
-
-    private void changeColorOfLinearLayoutChild(int index, LinearLayout view){
+/*    private void changeColorOfLinearLayoutChild(int index, LinearLayout view){
         TextView button = (TextView) view.getChildAt(index);
         button.setTextColor(0xFF00FF00);
         button.setTextSize(20);

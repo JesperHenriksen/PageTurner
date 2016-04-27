@@ -96,12 +96,12 @@ public class EPCP {
         System.out.println("Tone = " +getTone()+ " expected = " + Song.getCurrentChord().getFrequency());
         if(Chord.isEqual(getFundamentalFrequency(getTone()), Song.getCurrentChord().getFrequency())) {
             Song.nextChord();
-            if(NotePage.isNextNote()){
+            /*if(NotePage.isNextNote()){
                 NotePage.setIsNextNote(false);
             }
             else {
                 NotePage.setIsNextNote(true);
-            }
+            }*/
         }
     }
 
