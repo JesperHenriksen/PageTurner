@@ -93,15 +93,12 @@ public class EPCP {
         setFrequency(getFreqencyOfIndex(argMax));
         //System.out.println(" frequency = " + getFrequency());
         setTone(getMedian());
-        System.out.println("Tone = " +getTone()+ " expected = " + Song.getCurrentChord().getFrequency());
+        System.out.println("Tone = " +getTone()+ " expected = " + Song.getCurrentChord().getFrequency() + ", " + Song.getCurrentChord().getChordName());
+        System.out.print(" " + Song.getCurrentIndex() + "/" + Song.getNumberOfTotalChords());
         if(Chord.isEqual(getFundamentalFrequency(getTone()), Song.getCurrentChord().getFrequency())) {
             Song.nextChord();
-            /*if(NotePage.isNextNote()){
-                NotePage.setIsNextNote(false);
-            }
-            else {
-                NotePage.setIsNextNote(true);
-            }*/
+            System.out.println("Next Chord " + Song.getCurrentChord().getChordName());
+            Song.printSongChords();
         }
     }
 

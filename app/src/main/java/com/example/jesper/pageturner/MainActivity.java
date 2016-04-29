@@ -28,13 +28,13 @@ public class MainActivity extends AppCompatActivity {
         stopButton.setEnabled(false);
         playButton.setEnabled(false);*/
 
-        /*Bluetooth.startBluetooth();
+        Bluetooth.startBluetooth();
         try {
             Bluetooth.getArduinoData();
         }
         catch(IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
 

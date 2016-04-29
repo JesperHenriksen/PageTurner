@@ -9,6 +9,7 @@ public class Song {
     public String artistName;
     private static ArrayList<Song> songCollection = new ArrayList<>();
     private static ArrayList<Chord> listOfChords = new ArrayList<>();
+    private static int currentIndex = 0;
 
     public static int getCurrentIndex() {
         return currentIndex;
@@ -25,7 +26,6 @@ public class Song {
         return listOfChords.size();
     }
 
-    private static int currentIndex = 0;
 
 
     public Song(int noteImageResource, String songTitle, String artistName) {
@@ -37,7 +37,7 @@ public class Song {
     public Song(){}
 
     public static Chord getCurrentChord(){
-        if(listOfChords.size() < currentIndex)
+        if(listOfChords.size() > currentIndex)
             return listOfChords.get(currentIndex);
         else
             return listOfChords.get(listOfChords.size()-1);
@@ -46,6 +46,7 @@ public class Song {
     public static void nextChord(){
         if(listOfChords.size() - 1 > currentIndex) {
             currentIndex++;
+            System.out.println("Current index is " + currentIndex);
         }
     }
 
@@ -56,66 +57,95 @@ public class Song {
     }
     public static void loadSong(){
         //first block
-        listOfChords.add(new Chord("F")); listOfChords.add(new Chord("E"));
-        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("B"));
+        listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("E"));
+        listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("B"));
         listOfChords.add(new Chord("A"));
         //second block
-        listOfChords.add(new Chord("D")); listOfChords.add(new Chord("E"));
+        listOfChords.add(new Chord("D"));
+        listOfChords.add(new Chord("E"));
         listOfChords.add(new Chord("F"));
         //third block
-        listOfChords.add(new Chord("G")); listOfChords.add(new Chord("B"));
-        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("G"));
+        listOfChords.add(new Chord("B"));
+        listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("F"));
         //fourth block
-        listOfChords.add(new Chord("E")); listOfChords.add(new Chord("G"));
-        listOfChords.add(new Chord("F")); listOfChords.add(new Chord("E"));
+        listOfChords.add(new Chord("E"));
+        listOfChords.add(new Chord("G"));
+        listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("E"));
         //fifth block
-        listOfChords.add(new Chord("F")); listOfChords.add(new Chord("E"));
-        listOfChords.add(new Chord("F")); listOfChords.add(new Chord("G"));
+        listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("E"));
+        listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("G"));
         listOfChords.add(new Chord("E"));
         //sixth block
-        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("F"));
         listOfChords.add(new Chord("E"));
         //seventh block
-        listOfChords.add(new Chord("D")); listOfChords.add(new Chord("C"));
-        listOfChords.add(new Chord("F")); listOfChords.add(new Chord("G"));
+        listOfChords.add(new Chord("D"));
+        listOfChords.add(new Chord("C"));
+        listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("G"));
         listOfChords.add(new Chord("A"));
         //eighth block
-        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("C"));
-        listOfChords.add(new Chord("B")); listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("C"));
+        listOfChords.add(new Chord("B"));
+        listOfChords.add(new Chord("A"));
         //ninth block
-        listOfChords.add(new Chord("E")); listOfChords.add(new Chord("F"));
-        listOfChords.add(new Chord("G")); listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("E"));
+        listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("G"));
+        listOfChords.add(new Chord("F"));
         listOfChords.add(new Chord("G"));
         //tenth block
-        listOfChords.add(new Chord("B")); listOfChords.add(new Chord("A"));
-        listOfChords.add(new Chord("G")); listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("B"));
+        listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("G"));
+        listOfChords.add(new Chord("F"));
         //eleventh block
-        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("A"));
-        listOfChords.add(new Chord("B")); listOfChords.add(new Chord("G"));
+        listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("B"));
+        listOfChords.add(new Chord("G"));
         listOfChords.add(new Chord("D"));
         //twelfth block
-        listOfChords.add(new Chord("D")); listOfChords.add(new Chord("C#"));
+        listOfChords.add(new Chord("D"));
+        listOfChords.add(new Chord("C#"));
         listOfChords.add(new Chord("B"));
         //thirteenth block
-        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("A"));
-        listOfChords.add(new Chord("A")); listOfChords.add(new Chord("B"));
+        listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("A"));
+        listOfChords.add(new Chord("B"));
         listOfChords.add(new Chord("A"));
         //fourteenth block
-        listOfChords.add(new Chord("D")); listOfChords.add(new Chord("D"));
+        listOfChords.add(new Chord("D"));
+        listOfChords.add(new Chord("D"));
         listOfChords.add(new Chord("C"));
         //fifteenth block
-        listOfChords.add(new Chord("B")); listOfChords.add(new Chord("C"));
-        listOfChords.add(new Chord("D")); listOfChords.add(new Chord("D"));
+        listOfChords.add(new Chord("B"));
+        listOfChords.add(new Chord("C"));
+        listOfChords.add(new Chord("D"));
+        listOfChords.add(new Chord("D"));
         listOfChords.add(new Chord("G"));
         //sixteenth block
-        listOfChords.add(new Chord("F")); listOfChords.add(new Chord("E"));
-       /* for(Chord e: listOfChords){
-            System.out.print("chordName " + e.getChordName() + " frequency " + e.getFrequency());
-        }
-        System.out.println(" ");*/
+        listOfChords.add(new Chord("F"));
+        listOfChords.add(new Chord("E"));
+        printSongChords();
         //Song song = new Song(listOfChords,"Til vor lille gerning ud", "C.E.F. Weyse");
     }
 
+    public static void printSongChords(){
+        for(Chord e: listOfChords){
+            System.out.print(" chordName " + e.getChordName() + " frequency " + e.getFrequency());
+        }
+    }
     public Song(ArrayList<Chord> listOfChords, String artist, String songName) {
         this.setSongTitle(songName);
         this.setArtistName(artist);

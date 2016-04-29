@@ -25,6 +25,10 @@ public class NotePage extends AppCompatActivity {
     private boolean isFirstRun = true;
     private Thread moveImageThread = null;
     private Thread pedalThread = null;
+    private ImageView forwardButton;
+    private ImageView backwardButton;
+    private int arrowPressed = 0;
+
 
     /*public static boolean isNextNote() {
         return isNextNote;
@@ -43,7 +47,6 @@ public class NotePage extends AppCompatActivity {
 
         Button button = (Button) findViewById(R.id.buttonUpdate);
         button.setText("Start");
-        Song.loadSong();
         Toolbar myToolBar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolBar);
 
@@ -81,46 +84,44 @@ public class NotePage extends AppCompatActivity {
         Button eight = (Button) findViewById(R.id.eight);
         eight.setOnClickListener(new btnClick());
 
-        final ImageView backwardButton = (ImageView) findViewById(R.id.pushforward);
-        Button backward = (Button) findViewById(R.id.eight);
-        backward.setOnTouchListener(new View.OnTouchListener() {
+        backwardButton = (ImageView) findViewById(R.id.pushbackward);
+        forwardButton = (ImageView) findViewById(R.id.pushforward);
+        forwardButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        arrowPressed = 1;
+                        forwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.pusheddowntwo, null));
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        arrowPressed = 0;
+                        forwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notpushedtwo, null));
+                        return true;
+                }
+                return false;
+            }
+        });
+        backwardButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch(event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Song.nextChord();
+                        arrowPressed = 2;
                         backwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.pusheddownone, null));
                         return true;
                     case MotionEvent.ACTION_UP:
-                        backwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notpushedone, null));
-                        return true;
                     case MotionEvent.ACTION_CANCEL:
+                        arrowPressed = 0;
                         backwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notpushedone, null));
                         return true;
                 }
                 return false;
             }
         });
-        final ImageView forwardButton = (ImageView) findViewById(R.id.pushforward);
-        Button forward = (Button) findViewById(R.id.eight);
-        forward.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        Song.previousChord();
-                        forwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.pusheddowntwo, null));
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        forwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notpushedtwo, null));
-                        return true;
-                    case MotionEvent.ACTION_CANCEL:
-                        forwardButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notpushedtwo, null));
-                        return true;
-                }
-                return false;
-            }
-        });    }
+
+    }
 
     @Override
     protected void onResume() {
@@ -198,7 +199,7 @@ public class NotePage extends AppCompatActivity {
 
             while(isFirstRun) {
                 //System.out.println("Listening for tone " + EPCP.getFrequency());
-                if(EPCP.getFrequency() > 80 && EPCP.getFrequency() < 660){
+                if(EPCP.getFrequency() > 110 && EPCP.getFrequency() < 880){
                     //System.out.println("Listening for tone complete " + EPCP.getFrequency());
                     isFirstRun = false;
                     return;
@@ -267,6 +268,12 @@ public class NotePage extends AppCompatActivity {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                        if(arrowPressed == 1){
+                            Song.nextChord();
+                        }
+                        else if(arrowPressed == 2) {
+                            Song.previousChord();
+                        }
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -279,6 +286,7 @@ public class NotePage extends AppCompatActivity {
                                 View marker = (View) findViewById(R.id.marker);
                                 marker.setTranslationX(Song.getCurrentIndex() *
                                         (skipbuttons.getWidth() / Song.getNumberOfTotalChords()));
+
                                 /*if(isNextNote()){
                                     ImageView chordView = (ImageView) findViewById(R.id.gKey);
                                     chordView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notelightup, null));
@@ -307,7 +315,8 @@ public class NotePage extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.buttonUpdate:
                     //this.listenForTone();
-                    //System.out.println("started: is playing = " + isPlaying);
+                    Song.loadSong();
+                    System.out.println("started: is playing = " + isPlaying);
                     if(isPlaying) {
                         isPlaying = false;
                         View marker = findViewById(R.id.marker);
@@ -327,7 +336,7 @@ public class NotePage extends AppCompatActivity {
                         imageMovement();
                     }
                     else if(!isPlaying){
-                        //System.out.println("stopped thread: isPlaying = " + isPlaying);
+                        System.out.println("stopped thread: isPlaying = " + isPlaying);
                         Button button = (Button) findViewById(v.getId());
                         button.setText("Start");
                         recorder.stopRecording();

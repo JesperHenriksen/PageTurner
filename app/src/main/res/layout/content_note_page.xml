@@ -22,27 +22,30 @@
         android:background="@color/lightPurple"
         android:id="@+id/notepagebg" />
 
-    <ImageView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:id="@+id/longsongImage"/>
-
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/notpushedone"
-        android:layout_toRightOf="@+id/longsongImage"
-        android:id="@+id/pushforward"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/notpushedtwo"
-        android:layout_toLeftOf="@+id/longsongImage"
-        android:id="@+id/pushbackward"/>
+        android:layout_centerVertical="true">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/notpushedone"
+            android:paddingTop="40dp"
+            android:layout_weight="1"
+            android:id="@+id/pushbackward"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/longsongImage"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="40dp"
+            android:src="@drawable/notpushedtwo"
+            android:layout_weight="1"
+            android:id="@+id/pushforward"/>
+    </LinearLayout>
 
     <Button
         android:layout_width="140dp"
@@ -139,7 +142,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/transparentbutton"
-            android:text="1"
             android:layout_weight="0.125"
             android:textColor="@color/bgColor"
             android:layout_alignBottom="@+id/notepagebg"
@@ -150,7 +152,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/transparentbutton"
-            android:text="2"
             android:layout_weight="0.125"
             android:textColor="@color/bgColor"
             android:layout_alignBottom="@+id/notepagebg"
@@ -162,7 +163,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/transparentbutton"
-            android:text="3"
             android:layout_weight="0.125"
             android:textColor="@color/bgColor"
             android:layout_alignBottom="@+id/notepagebg"
@@ -173,7 +173,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/transparentbutton"
-            android:text="4"
             android:textColor="@color/bgColor"
             android:layout_alignBottom="@+id/notepagebg"
             android:layout_weight="0.125"
@@ -185,7 +184,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/transparentbutton"
-            android:text="5"
             android:textColor="@color/bgColor"
             android:layout_alignBottom="@+id/notepagebg"
             android:layout_weight="0.125"
@@ -197,7 +195,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/transparentbutton"
-            android:text="6"
             android:textColor="@color/bgColor"
             android:layout_alignBottom="@+id/notepagebg"
             android:layout_weight="0.125"
@@ -209,7 +206,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/transparentbutton"
-            android:text="7"
             android:textColor="@color/bgColor"
             android:layout_alignBottom="@+id/notepagebg"
             android:layout_weight="0.125"
@@ -220,7 +216,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/transparentbutton"
-            android:text="8"
             android:textColor="@color/bgColor"
             android:layout_alignBottom="@+id/notepagebg"
             android:layout_weight="0.125"
