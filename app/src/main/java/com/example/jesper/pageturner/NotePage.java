@@ -29,17 +29,6 @@ public class NotePage extends AppCompatActivity {
     private ImageView backwardButton;
     private int arrowPressed = 0;
 
-
-    /*public static boolean isNextNote() {
-        return isNextNote;
-    }
-
-    public static void setIsNextNote(boolean isNextNotee) {
-        isNextNote = isNextNotee;
-    }
-
-    protected static boolean isNextNote = false;*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -193,18 +182,6 @@ public class NotePage extends AppCompatActivity {
         private int getMovementValue (int i) {
             Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.longsong);
             return src.getWidth() * i/8;
-        }
-
-        private void listenForTone(){
-
-            while(isFirstRun) {
-                //System.out.println("Listening for tone " + EPCP.getFrequency());
-                if(EPCP.getFrequency() > 110 && EPCP.getFrequency() < 880){
-                    //System.out.println("Listening for tone complete " + EPCP.getFrequency());
-                    isFirstRun = false;
-                    return;
-                }
-            }
         }
 
         private void pedalsPressed(){

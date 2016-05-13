@@ -155,16 +155,6 @@ public class EPCP {
         return testingFrequencies[index];
     }
     //freqency = index / N * sampleFQ
-    private double getPitchEstimation(ArrayList<Double> powerSpectrumSquared, int iterator){
-        int i = 0, n = 0;
-        double sum = 0;
-        while(i < powerSpectrumSquared.size() && n < 10){
-            sum += (powerSpectrumSquared.get(i));
-            i += iterator;
-            n++;
-        }
-        return sum;
-    }
 
     private Integer getPositionOfMax(ArrayList<Double> complexes){
         int result = 0; double max = 0.0;

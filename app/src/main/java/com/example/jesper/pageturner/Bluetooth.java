@@ -23,6 +23,10 @@ public class Bluetooth
 {
     private static BluetoothSocket socket;
     private static BluetoothDevice device;
+    private static int data;
+    private static final String TAG = "bluetooth2";
+    private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"); //Standard SerialPortService ID
+    private static Thread workerThread;
 
     public static int getData() {
         return data;
@@ -32,21 +36,11 @@ public class Bluetooth
         Bluetooth.data = data;
     }
 
-    private static int data;
-    protected final static int RECIEVE_MESSAGE = 1;
-    private static StringBuilder sb = new StringBuilder();
-    private static final String TAG = "bluetooth2";
-    private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"); //Standard SerialPortService ID
-
-
-
-    private static Thread workerThread;
-
     //Function for finding the bluetooth device
-    public static void startBluetooth()
+    public static void startBluetooth(){
     //Enables bluetooth on the android device
     //Turns it on if off, and searches for the arduino device
-    {
+
         //BluetoothAdapter.getDefaultAdapter();
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         /*if(mBluetoothAdapter == null)

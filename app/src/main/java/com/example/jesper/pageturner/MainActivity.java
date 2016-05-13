@@ -8,7 +8,7 @@ import android.view.View;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    private AudioRecordToFile recorder = null;
+    //private AudioRecordToFile recorder = null;
     /*private Button startButton = null;
     private Button stopButton = null;
     private Button playButton = null;*/
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         /*startButton = (Button) findViewById(R.id.button);
         stopButton = (Button) findViewById(R.id.button2);
         playButton = (Button) findViewById(R.id.button3);*/
-        recorder = new AudioRecordToFile();
+        //recorder = new AudioRecordToFile();
         /*startButton.setOnClickListener(new btnClick());
         stopButton.setOnClickListener(new btnClick());
         playButton.setOnClickListener(new btnClick());

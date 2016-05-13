@@ -150,7 +150,6 @@ public class Song {
         this.setSongTitle(songName);
         this.setArtistName(artist);
         this.setListOfChords(listOfChords);
-        SongCollection.add(this);
     }
 
     /*public ArrayList<Chord> getListOfChords() {

@@ -15,7 +15,6 @@ public class AudioRecorder {
     private short buffer[] = null;
     public boolean isRecording = false;
 
-
     AudioRecorder(){
         minBufferSize = AudioRecord.getMinBufferSize(
                 RECORDER_SAMPLE_FREQUENCY,
@@ -32,9 +31,6 @@ public class AudioRecorder {
     }
     public static int getSampleFrequency(){
         return RECORDER_SAMPLE_FREQUENCY;
-    }
-    public int getMinBufferSize() {
-        return minBufferSize;
     }
 
     public void startRecording(){
@@ -64,10 +60,6 @@ public class AudioRecorder {
                 buffer[i] = 0;
             }
         }
-    }
-
-    public int getRecorderState(){
-        return audioRecord.getRecordingState();
     }
 
     public void stopRecording(){

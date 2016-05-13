@@ -60,11 +60,6 @@ public class Complex {
         return new Complex(alpha * re, alpha * im);
     }
 
-    // return a new Complex object whose value is the conjugate of this
-    public Complex conjugate() {
-        return new Complex(re, -im);
-    }
-
     // return a new Complex object whose value is the reciprocal of this
     public Complex reciprocal() {
         double scale = re * re + im * im;
@@ -156,33 +151,6 @@ public class Complex {
         }
         return y;
     }
-
-    // compute the inverse FFT of x[], assuming its length is a power of 2
-    public static Complex[] ifft(Complex[] x) {
-        int N = x.length;
-        Complex[] y = new Complex[N];
-
-        // take conjugate
-        for (int i = 0; i < N; i++) {
-            y[i] = x[i].conjugate();
-        }
-
-        // compute forward FFT
-        y = fft(y);
-
-        // take conjugate again
-        for (int i = 0; i < N; i++) {
-            y[i] = y[i].conjugate();
-        }
-
-        // divide by N
-        for (int i = 0; i < N; i++) {
-            y[i] = y[i].times(1.0 / N);
-        }
-
-        return y;
-    }
-
 
     // display an array of Complex numbers to standard output
     public static void show(Complex[] x, String title) {
